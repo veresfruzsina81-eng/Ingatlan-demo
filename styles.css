@@ -1,112 +1,92 @@
+/* Alap */
 :root{
-  --bg:#0f1b33;
-  --ink:#0c1322;
-  --panel:#15254a;
-  --muted:#8da1c0;
-  --brand:#ff6a3d;
-  --brand-2:#3dc7ff;
-  --ok:#20c997;
-  --card:#ffffff;
+  --white:#fff;
+  --ink:#101828;
+  --muted:#6b7280;
+  --border:#e7ecf5;
+  --bg:#f7f9fd;
+  --brand:#ff6a3d;     /* narancs akció */
+  --nav:#0f172a;       /* sötétkék fejléchez */
+  --nav-light:#22345e;
+  --pill:#0d1c3a;      /* kereső sáv */
+  --ring:#bcd7ff;
 }
-
 *{box-sizing:border-box}
 html,body{margin:0}
-body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;color:#101828;background:#f7f9fc}
+body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
+.sr{position:absolute;left:-9999px}
 
-/* Topbar */
-.topbar{position:sticky;top:0;z-index:20;display:flex;align-items:center;gap:.75rem;padding:.6rem 1rem;background:var(--bg);color:#fff}
-.menu-btn{all:unset;cursor:pointer;font-size:1.4rem;padding:.25rem .5rem;border-radius:.5rem}
-.brand{display:flex;align-items:center;gap:.5rem;color:#fff;text-decoration:none;font-weight:700;letter-spacing:.2px}
-.logo{width:24px;height:24px;display:inline-block;background:
-  linear-gradient(135deg,var(--brand),#ff915f);
-  mask:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 14 L12 6 L21 14 V21 H14 V15 H10 V21 H3 Z"/></svg>') center/contain no-repeat}
-.brand-text{font-size:1.1rem}
-.brand-text .dot{color:var(--brand-2)}
-.top-actions{margin-left:auto;display:flex;gap:.5rem}
-
-/* Buttons, fields */
-.btn{background:var(--brand);color:#fff;border:none;padding:.6rem .9rem;border-radius:.7rem;cursor:pointer;font-weight:600}
-.btn.small{padding:.4rem .7rem;font-size:.9rem}
-.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,.3);color:#fff}
-.btn.primary{background:var(--brand);color:#fff}
-.icon-btn{all:unset;cursor:pointer;padding:.2rem .4rem}
-.field{width:100%;padding:.65rem .7rem;border:1px solid #d0d7e2;border-radius:.6rem;background:#fff}
-.chk{display:flex;align-items:center;gap:.45rem;font-size:.95rem}
-.chk input{width:1rem;height:1rem}
-
-.link{color:var(--brand);text-decoration:none;font-weight:600}
-.fine{color:#6b7280;font-size:.9rem}
-.muted{color:#6b7280}
-.sr-only{position:absolute;left:-9999px}
-
-/* Drawer */
-.drawer{position:fixed;inset:0 35% 0 0;background:var(--panel);color:#fff;transform:translateX(-100%);transition:.25s;z-index:30}
-.drawer.open{transform:translateX(0)}
-.drawer-head{display:flex;align-items:center;justify-content:space-between;padding:1rem;border-bottom:1px solid rgba(255,255,255,.08)}
-.brand-mini{font-weight:700}
-.drawer-links{list-style:none;margin:0;padding:0}
-.drawer-link,.linklike{display:block;padding:1rem 1.2rem;color:#e8f1ff;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.06)}
-.linklike{background:none;border:none;text-align:left;width:100%;cursor:pointer;color:#e8f1ff}
-.backdrop{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.2s;z-index:25}
-.backdrop.show{opacity:1;pointer-events:auto}
+/* Fejléc */
+.header{position:sticky;top:0;z-index:50;background:var(--white);border-bottom:1px solid #eef2f7}
+.header__inner{display:flex;align-items:center;gap:16px;padding:10px 16px;max-width:1160px;margin:0 auto}
+.logo{font-weight:900;text-decoration:none;color:var(--nav);letter-spacing:.2px}
+.logo__dot{color:var(--brand)}
+.nav{margin-left:auto;display:flex;gap:18px;align-items:center}
+.nav__link{background:none;border:none;color:var(--nav-light);font-weight:700;cursor:pointer}
+.nav__link:hover{text-decoration:underline}
+.btn{border:none;border-radius:12px;padding:10px 14px;font-weight:800;cursor:pointer}
+.btn--outline{background:transparent;color:var(--brand);border:2px solid var(--brand)}
+.btn--primary{background:var(--brand);color:#fff}
+.hamburger{display:none;background:none;border:none;cursor:pointer}
+.hamburger span{display:block;width:24px;height:2px;background:#111;margin:5px 0;border-radius:2px}
+/* Mobil menü */
+.mobile{display:none;border-top:1px solid #eef2f7;background:#fff}
+.mobile__item{display:block;width:100%;text-align:left;padding:14px 16px;background:none;border:none;border-bottom:1px solid #eef2f7;font-weight:700;color:#1f2b4a}
 
 /* Hero */
-.hero{background:linear-gradient(180deg,var(--bg),#172a57 60%,#f7f9fc 60%);padding:2rem 1rem 5rem;color:#fff}
-.hero-inner{max-width:1100px;margin:0 auto}
-.tabs{display:inline-flex;border-radius:1rem;background:rgba(255,255,255,.1);padding:.25rem;margin-bottom:1rem}
-.tab{background:transparent;color:#cfe3ff;border:none;padding:.5rem 1rem;border-radius:.8rem;cursor:pointer;font-weight:600}
-.tab.active{background:#fff;color:#0b1731}
-.search{display:grid;gap:.6rem;grid-template-columns:repeat(3,minmax(0,1fr));align-items:center}
-.search .field:nth-child(n+5){grid-column:auto}
-.search .chk{grid-column:span 1}
-.search .btn{grid-column:span 1}
-.search .advanced{grid-column:1/-1}
-.adv-grid{display:grid;gap:.6rem;grid-template-columns:repeat(4,minmax(0,1fr))}
-.mi-ez{all:unset;color:#cfe3ff;text-decoration:underline;cursor:pointer}
+.hero{background:linear-gradient(180deg,#f4f7ff 0%, #eef3ff 55%, transparent 55%);padding:26px 0 72px}
+.hero__inner{max-width:1160px;margin:0 auto;padding:0 16px}
+.hero__title{font-size:40px;line-height:1.1;margin:12px 0 18px}
+.hero__note{color:#334155;background:#eef6ff;border:1px solid #d6e9ff;border-radius:12px;padding:12px 14px;display:inline-block}
 
-/* Cards / results */
-.wrap{max-width:1100px;margin:-3rem auto 2rem;padding:0 1rem}
-.results h2{margin:0 0 .5rem}
-.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1rem}
-.card{background:var(--card);border:1px solid #e7ecf5;border-radius:1rem;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 2px 10px rgba(0,0,0,.04)}
-.card img{width:100%;height:160px;object-fit:cover}
-.card-body{padding:.9rem;display:flex;flex-direction:column;gap:.3rem}
-.badge{display:inline-block;background:linear-gradient(90deg,var(--brand-2),#6be0ff);color:#002033;padding:.25rem .5rem;border-radius:.6rem;font-size:.8rem;font-weight:700}
-.tags{display:flex;gap:.4rem;flex-wrap:wrap}
-
-/* Partner */
-.partner{margin-top:2rem}
-.partner-card{display:grid;grid-template-columns:300px 1fr;gap:1rem;background:#fff;border:1px solid #e7ecf5;border-radius:1rem;overflow:hidden}
-.partner-card img{width:100%;height:100%;object-fit:cover}
-.partner-body{padding:1rem}
-
-/* News */
-.news{margin-top:2rem}
-.news-item{display:grid;grid-template-columns:320px 1fr;gap:1rem;background:#fff;border:1px solid #e7ecf5;border-radius:1rem;overflow:hidden}
-.news-item img{width:100%;height:100%;object-fit:cover}
-.tag{background:#eef5ff;color:#1e3a8a;padding:.25rem .5rem;border-radius:.5rem;font-size:.8rem;font-weight:700}
-
-/* Apps */
-.apps{margin-top:2rem;text-align:center;background:#fff;border:1px solid #e7ecf5;border-radius:1rem;padding:1.3rem}
-.store-badges{display:flex;gap:.8rem;justify-content:center;flex-wrap:wrap}
-.store{display:inline-flex;align-items:center;justify-content:center;border:1px solid #d0d7e2;border-radius:.8rem;padding:.6rem 1rem;text-decoration:none;font-weight:700}
-.store.appstore{background:#000;color:#fff}
-.store.gplay{background:#1a73e8;color:#fff}
-
-/* Footer */
-.footer{background:#0b1731;color:#d4e0ff;padding:2rem 1rem;margin-top:2rem}
-.footer .cluster{display:grid;gap:1rem;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.footer a{color:#cfe3ff;text-decoration:none}
-.footer h4{margin:.2rem 0 .6rem}
-
-.modal{border:none;border-radius:1rem;max-width:540px;width:90%;padding:0}
-.modal::backdrop{background:rgba(0,0,0,.45)}
-.modal-body{padding:1rem 1.2rem}
-menu{display:flex;gap:.5rem;justify-content:flex-end;padding:0;margin-top:.5rem}
-.more-news summary{cursor:pointer}
-.bullets{margin:.5rem 0 0 1rem}
-@media (max-width:860px){
-  .search{grid-template-columns:1fr 1fr}
-  .adv-grid{grid-template-columns:1fr 1fr}
-  .partner-card,.news-item{grid-template-columns:1fr}
+/* Kereső sáv */
+.search{
+  display:grid;gap:10px;align-items:center;grid-template-columns:auto 140px 1fr 220px 180px 140px auto auto auto;
+  background:var(--pill);color:#fff;border-radius:20px;padding:12px;box-shadow:0 8px 20px rgba(2,6,23,.18);
 }
+.field{width:100%;padding:12px 12px;border-radius:12px;border:1px solid var(--border);background:#fff;color:#111;font-size:16px}
+.search__numbers{position:relative}
+.unit{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#475569;font-weight:700}
+.switch{display:flex;gap:8px;margin:0;padding:0;border:0}
+.switch__item{display:flex;align-items:center;gap:8px;background:#14223f;padding:8px 12px;border-radius:999px;color:#d2d8ea;border:2px solid transparent;cursor:pointer}
+.switch__item input{accent-color:#fff}
+.check{display:flex;align-items:center;gap:8px;color:#e3ecff}
+.check input{width:18px;height:18px}
+.search svg{width:22px;height:22px;fill:#fff}
+.search__more{background:none;border:none;color:#cad9ff;text-decoration:underline;cursor:pointer;font-weight:700}
+
+@media (max-width:1024px){
+  .nav{display:none}
+  .hamburger{display:block;margin-left:auto}
+  .mobile{display:block}
+  .header__inner{padding:10px 16px}
+  .search{grid-template-columns:1fr 1fr;gap:12px}
+  .search__more{grid-column:1/-1;justify-self:start}
+}
+
+/* Lakópark kártyák */
+.parks{padding:28px 0}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{
+  background:#fff;border:1px solid var(--border);border-radius:16px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:0 8px 18px rgba(16,24,40,.06)
+}
+.card__img{width:100%;height:160px;object-fit:cover}
+.card__body{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.card__title{margin:0;font-size:16px;font-weight:900}
+.card__desc{color:var(--muted);font-size:14px}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{background:#eef6ff;color:#0b3d87;border-radius:10px;padding:4px 8px;font-size:12px;font-weight:800}
+.card .btn{align-self:flex-start;margin-top:6px}
+
+/* Modálok */
+.modal{border:none;border-radius:16px;padding:0;width:min(92vw,680px)}
+.modal::backdrop{background:rgba(0,0,0,.45)}
+.modal__head{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid var(--border)}
+.modal__body{padding:14px}
+.modal__close{all:unset;cursor:pointer;font-size:20px;line-height:1;padding:6px}
+.modal__body img{width:100%;height:260px;object-fit:cover;border-radius:12px;margin-bottom:10px}
+
+/* Fókusz gyűrű */
+:focus{outline:3px solid var(--ring);outline-offset:2px}
