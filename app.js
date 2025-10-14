@@ -1,148 +1,161 @@
-// ----- Demo dataset -------------------------------------------------------
-const DATA = [
-  {id:1,type:'elado',kind:'lakás',title:'Panel lakás – XIV.',
-    city:'Budapest XIV.', price:45.9, area:52, rooms:2, newBuild:false, fix3:true,
-    img:'https://picsum.photos/seed/panel/600/380', desc:'Napfényes, erkélyes panel lakás a város közelében.'},
-  {id:2,type:'elado',kind:'lakás',title:'Tégla lakás – V.',
-    city:'Budapest V.', price:98, area:64, rooms:3, newBuild:false, fix3:false,
-    img:'https://picsum.photos/seed/tegla/600/380', desc:'Felújított, belvárosi lakás liftes házban.'},
-  {id:3,type:'elado',kind:'ház',title:'Családi ház – Budakeszi',
-    city:'Budakeszi', price:89, area:130, rooms:4, newBuild:true, fix3:false,
-    img:'https://picsum.photos/seed/haz/600/380', desc:'Új építésű családi ház garázzsal és kerttel.'},
-  {id:4,type:'kiado',kind:'lakás',title:'Albérlet – XI.',
-    city:'Budapest XI.', price:0.32, area:38, rooms:1, newBuild:false, fix3:false,
-    img:'https://picsum.photos/seed/rent/600/380', desc:'Bútorozott garzon kiváló közlekedéssel.'},
-  {id:5,type:'elado',kind:'lakás',title:'Erkélyes lakás – XIII.',
-    city:'Budapest XIII.', price:79, area:54, rooms:2, newBuild:false, fix3:true,
-    img:'https://picsum.photos/seed/balcony/600/380', desc:'Csendes utcában, zöldre néző erkély.'},
-];
+// Drawer
+const drawer = document.getElementById('drawer');
+const backdrop = document.getElementById('backdrop');
+const openMenu = document.getElementById('openMenu');
+const drawerClose = document.getElementById('drawerClose');
+const toggleDrawer = (show)=> {
+  drawer.classList.toggle('open', show);
+  backdrop.classList.toggle('show', show);
+  drawer.setAttribute('aria-hidden', !show);
+  backdrop.setAttribute('aria-hidden', !show);
+};
+openMenu.addEventListener('click', ()=>toggleDrawer(true));
+drawerClose.addEventListener('click', ()=>toggleDrawer(false));
+backdrop.addEventListener('click', ()=>toggleDrawer(false));
 
-// ----- Elements -----------------------------------------------------------
-const results = document.getElementById('results');
-const tabs = document.querySelectorAll('.tab');
+// Tabs (Eladó/Kiadó)
+let currentKind = 'elado';
+document.querySelectorAll('.tab').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    currentKind = btn.dataset.kind;
+    runSearch();
+  });
+});
+
+// FIX 3% modal
+const fixModal = document.getElementById('fixModal');
+document.getElementById('openFix')?.addEventListener('click', ()=>fixModal.showModal());
+document.getElementById('openFix2')?.addEventListener('click', ()=>fixModal.showModal());
+
+// Login modal + mock auth
 const loginModal = document.getElementById('loginModal');
 const postModal  = document.getElementById('postModal');
-const detailsModal = document.getElementById('detailsModal');
+const loginOpen = document.getElementById('loginOpen');
+const loginOpen2 = document.getElementById('loginOpen2');
+const postOpen = document.getElementById('postOpen');
+loginOpen.addEventListener('click', ()=>loginModal.showModal());
+loginOpen2.addEventListener('click', ()=>loginModal.showModal());
+postOpen.addEventListener('click', ()=>postModal.showModal());
 
-const state = { type:'elado' };
+const loginForm = document.getElementById('loginForm');
+const loginMsg  = document.getElementById('loginMsg');
+const loginEmail= document.getElementById('loginEmail');
+const loginPass = document.getElementById('loginPass');
+const remember  = document.getElementById('remember');
 
-// ----- Helpers ------------------------------------------------------------
-function fmtPrice(m){ // millió Ft
-  return (Math.round(m*10)/10).toLocaleString('hu-HU', {minimumFractionDigits:1, maximumFractionDigits:1}) + ' M Ft';
-}
-function renderCards(list){
-  results.innerHTML = '';
-  if(!list.length){ results.innerHTML = '<div class="muted">Nincs találat a megadott szűrőkre.</div>'; return; }
-  list.forEach(x=>{
-    const c = document.createElement('article'); c.className='card';
-    c.innerHTML = `
-      <div class="img" style="background-image:url('${x.img}');background-size:cover;background-position:center">
-        <span class="badge">${x.area} m² • ${x.rooms} szoba</span>
-      </div>
-      <div class="body">
-        <div class="title">${x.title}</div>
-        <div class="muted">${x.city} • ${x.kind}</div>
-        <div class="price">${fmtPrice(x.price)}</div>
-        <div class="cta">
-          <button class="btn" data-details="${x.id}">Részletek</button>
-          <button class="btn ghost" onclick="alert('Elmentve kedvencek közé – demó')">Mentés</button>
-        </div>
-      </div>`;
-    results.appendChild(c);
+function setLoggedIn(email){
+  document.querySelectorAll('#loginOpen,#loginOpen2').forEach(b=>b.textContent = email ? 'Kijelentkezés' : 'Bejelentkezés');
+  document.querySelectorAll('#loginOpen,#loginOpen2').forEach(b=>{
+    b.onclick = email 
+      ? ()=>{ localStorage.removeItem('demoUser'); setLoggedIn(null); }
+      : ()=>loginModal.showModal();
   });
-  // attach details buttons
-  document.querySelectorAll('[data-details]').forEach(b=>{
-    b.onclick = () => openDetails( Number(b.getAttribute('data-details')) );
-  });
+  if(email){
+    loginModal.close();
+    loginMsg.textContent = '';
+  }
 }
+const saved = localStorage.getItem('demoUser');
+if(saved) setLoggedIn(saved);
 
-function collectFilters(){
-  const toNum = v => v ? Number(v) : null;
-  return {
-    kind: document.getElementById('kind').value,
-    city: document.getElementById('city').value.trim().toLowerCase(),
-    priceMin: toNum(document.getElementById('priceMin').value),
-    priceMax: toNum(document.getElementById('priceMax').value),
-    areaMin : toNum(document.getElementById('areaMin').value),
-    rooms   : toNum(document.getElementById('rooms').value),
-    fix3    : document.getElementById('fix3').checked,
-    newBuild: document.getElementById('newBuild').checked
-  };
-}
-
-function applyFilters(){
-  const f = collectFilters();
-  const list = DATA.filter(x=>{
-    if(x.type!==state.type) return false;
-    if(f.kind && x.kind!==f.kind) return false;
-    if(f.city && !x.city.toLowerCase().includes(f.city)) return false;
-    if(f.priceMin!=null && x.price < f.priceMin) return false;
-    if(f.priceMax!=null && x.price > f.priceMax) return false;
-    if(f.areaMin!=null  && x.area  < f.areaMin) return false;
-    if(f.rooms!=null    && x.rooms < f.rooms) return false;
-    if(f.fix3 && !x.fix3) return false;
-    if(f.newBuild && !x.newBuild) return false;
-    return true;
-  });
-  renderCards(list);
-}
-
-function openDetails(id){
-  const x = DATA.find(d=>d.id===id);
-  if(!x) return;
-  document.getElementById('dTitle').textContent = x.title;
-  document.getElementById('dImg').src = x.img;
-  document.getElementById('dMeta').textContent = `${x.area} m² • ${x.rooms} szoba • ${x.kind}`;
-  document.getElementById('dCity').textContent = x.city;
-  document.getElementById('dPrice').textContent = fmtPrice(x.price);
-  document.getElementById('dDesc').textContent = x.desc;
-  detailsModal.showModal();
-}
-
-// ----- Tab switching ------------------------------------------------------
-tabs.forEach(t=>{
-  t.onclick = () => {
-    tabs.forEach(x=>x.classList.remove('active'));
-    t.classList.add('active');
-    state.type = t.dataset.type;
-    applyFilters();
+loginForm?.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  const email = (loginEmail.value||'').trim().toLowerCase();
+  const pass  = loginPass.value||'';
+  // very basic demo auth
+  if((email === 'demo@demo.hu' || email === 'admin@demo.hu') && pass === 'demo123'){
+    if(remember.checked) localStorage.setItem('demoUser', email);
+    setLoggedIn(email);
+  }else{
+    loginMsg.textContent = 'Hibás e-mail vagy jelszó (demó: demo@demo.hu / demo123).';
   }
 });
 
-// ----- Search controls ----------------------------------------------------
-document.getElementById('btnSearch').onclick = applyFilters;
-document.getElementById('btnReset').onclick = ()=>{
-  document.querySelectorAll('input').forEach(i=>{ if(i.type!=='checkbox') i.value=''; else i.checked=false; });
-  document.getElementById('kind').selectedIndex=0;
-  applyFilters();
-}
-document.getElementById('toggle-advanced').onclick = ()=>{
-  const adv = document.getElementById('advanced');
-  adv.classList.toggle('hidden');
+// Search + mock data
+const resultsEl = document.getElementById('results');
+const noResults = document.getElementById('noResults');
+
+// minimal fake dataset
+const DATA = [
+  {id:1, kind:'elado', type:'lakas', city:'Budapest XI.', price:74, size:52, rooms:2, year:2012, floor:3, balcony:true, newBuild:false, fix:true, img:'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop'},
+  {id:2, kind:'elado', type:'lakas', city:'Győr', price:42, size:48, rooms:2, year:2006, floor:2, balcony:false, newBuild:false, fix:false, img:'https://images.unsplash.com/photo-1502005229762-cf1b2da7c52f?q=80&w=1200&auto=format&fit=crop'},
+  {id:3, kind:'kiado', type:'lakas', city:'Debrecen', price:180, size:65, rooms:3, year:2021, floor:6, balcony:true, newBuild:true, fix:true, img:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?q=80&w=1200&auto=format&fit=crop'},
+  {id:4, kind:'elado', type:'haz', city:'Szeged', price:95, size:110, rooms:4, year:1998, floor:0, balcony:false, newBuild:false, fix:false, img:'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop'},
+  {id:5, kind:'kiado', type:'lakas', city:'Budapest XIII.', price:240, size:72, rooms:3, year:2023, floor:8, balcony:true, newBuild:true, fix:false, img:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?q=80&w=1200&auto=format&fit=crop'}
+];
+
+function runSearch(){
+  const t = document.getElementById('type').value;
+  const where = document.getElementById('where').value.toLowerCase().trim();
+  const price = parseInt(document.getElementById('price').value, 10);
+  const size  = parseInt(document.getElementById('size').value, 10);
+  const rooms = parseInt(document.getElementById('rooms').value, 10);
+  const fix   = document.getElementById('fixChk').checked;
+  const nbuild= document.getElementById('newBuild').checked;
+  const yMin  = parseInt(document.getElementById('yearMin').value,10);
+  const yMax  = parseInt(document.getElementById('yearMax').value,10);
+  const floor = parseInt(document.getElementById('floor').value,10);
+  const balcony = (document.getElementById('balcony').value||'').toLowerCase();
+
+  const results = DATA.filter(it=>{
+    if(it.kind !== currentKind) return false;
+    if(t && it.type !== t) return false;
+    if(where && !it.city.toLowerCase().includes(where)) return false;
+    if(!Number.isNaN(price) && it.price > price) return false;
+    if(!Number.isNaN(size) && it.size < size) return false;
+    if(!Number.isNaN(rooms) && it.rooms < rooms) return false;
+    if(fix && !it.fix) return false;
+    if(nbuild && !it.newBuild) return false;
+    if(!Number.isNaN(yMin) && it.year < yMin) return false;
+    if(!Number.isNaN(yMax) && it.year > yMax) return false;
+    if(!Number.isNaN(floor) && it.floor !== floor) return false;
+    if(balcony && (balcony==='igen') !== it.balcony) return false;
+    return true;
+  });
+
+  renderCards(results);
 }
 
-// ----- Login modal --------------------------------------------------------
-document.getElementById('nav-login').onclick = (e)=>{ e.preventDefault(); loginModal.showModal(); }
-document.getElementById('loginSubmit').onclick = (e)=>{
+function renderCards(items){
+  resultsEl.innerHTML = '';
+  if(!items.length){
+    noResults.hidden = false;
+    return;
+  }
+  noResults.hidden = true;
+
+  items.forEach(it=>{
+    const el = document.createElement('article');
+    el.className = 'card';
+    el.innerHTML = `
+      <img src="${it.img}" alt="Ingatlan fotó">
+      <div class="card-body">
+        <div class="tags">
+          ${it.fix ? '<span class="badge">FIX 3%</span>' : ''}
+          ${it.newBuild ? '<span class="badge" style="background:linear-gradient(90deg,#00e676,#54f2b2)">Új építésű</span>' : ''}
+        </div>
+        <h3>${capitalize(it.type)} – ${it.city}</h3>
+        <p><strong>${it.price}</strong> millió Ft • ${it.size} m² • ${it.rooms} szoba</p>
+        <p class="fine">Épült: ${it.year} • Emelet: ${it.floor}${it.balcony ? ' • Erkély' : ''}</p>
+        <button class="btn small">Részletek</button>
+      </div>
+    `;
+    resultsEl.appendChild(el);
+  });
+}
+
+function capitalize(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+
+// Search submit
+document.getElementById('searchForm').addEventListener('submit', (e)=>{
   e.preventDefault();
-  const email=document.getElementById('loginEmail').value, pass=document.getElementById('loginPass').value;
-  const ok = /^\S+@\S+\.\S+$/.test(email) && pass.length>=6;
-  if(ok){ loginModal.close(); alert('Sikeres bejelentkezés (demó).'); }
-  else{ alert('Adj meg valós e-mail formátumot és min. 6 karakteres jelszót.'); }
-}
-
-// ----- Post modal ---------------------------------------------------------
-document.getElementById('nav-post').onclick = (e)=>{ e.preventDefault(); postModal.showModal(); }
-document.getElementById('pImage').addEventListener('change', (ev)=>{
-  const file = ev.target.files?.[0];
-  if(!file) return;
-  const img = document.getElementById('pPreview');
-  img.src = URL.createObjectURL(file);
-  img.style.display='block';
+  runSearch();
 });
 
-// ----- "Új keresés" link scroll ------------------------------------------
-document.getElementById('nav-search').onclick = (e)=>{ e.preventDefault(); window.scrollTo({top:0,behavior:'smooth'}); }
+// Open FIX modal by button in hero
+document.getElementById('openFix2').addEventListener('click', ()=>fixModal.showModal());
 
 // Initial render
-applyFilters();
+runSearch();
