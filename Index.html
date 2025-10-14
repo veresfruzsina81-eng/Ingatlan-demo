@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ingatlanDemo</title>
+  <!-- Tailwind CDN (gyors protóhoz) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              navy: "#111A3A",
+              orange: "#E65A2E",
+              light: "#EEF2FF"
+            }
+          },
+          boxShadow: { soft: "0 8px 24px rgba(17,26,58,.08)" },
+          borderRadius: { xl2: "1rem" }
+        }
+      }
+    };
+  </script>
+  <style>
+    /* Finom görgetősáv mobilra/desktopra */
+    ::-webkit-scrollbar{width:10px;height:10px}
+    ::-webkit-scrollbar-thumb{background:#ccd3ff;border-radius:8px}
+  </style>
+</head>
+<body class="bg-brand-light text-slate-900">
+  <!-- Topbar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <button id="menuBtn" class="p-2 -ml-2 rounded-lg hover:bg-slate-100 focus:outline-none lg:hidden" aria-label="Menü">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+      </button>
+
+      <a href="#" class="flex items-center gap-2 font-semibold text-2xl">
+        <span class="text-slate-900">ingatlan</span><span class="text-brand-orange text-[#E65A2E]">.com</span>
+      </a>
+
+      <nav class="hidden lg:flex items-center gap-6 text-sm">
+        <a href="#" class="hover:text-brand-orange">Új keresés</a>
+        <a href="#" class="hover:text-brand-orange">Hirdetés feladása</a>
+        <a href="#" class="hover:text-brand-orange">Belépés</a>
+      </nav>
+    </div>
+
+    <!-- Mobil menü -->
+    <div id="mobileNav" class="hidden lg:hidden border-t">
+      <div class="px-4 py-3 space-y-3 text-sm bg-white">
+        <a class="block" href="#">Új keresés</a>
+        <a class="block" href="#">Hirdetés feladása</a>
+        <a class="block" href="#">FIX 3% hitel</a>
+        <a class="block" href="#">Bejelentkezés / Regisztráció</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hős/kereső -->
+  <section class="bg-brand-navy text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <!-- Tabok -->
+      <div class="flex w-full max-w-lg mx-auto bg-white/10 rounded-xl overflow-hidden mb-4">
+        <button class="flex-1 py-3 text-center bg-white text-brand-navy font-medium">Eladó</button>
+        <button class="flex-1 py-3 text-center text-white/90 hover:bg-white/10">Kiadó</button>
+      </div>
+
+      <!-- Kereső kártya -->
+      <div class="bg-white rounded-2xl shadow-soft p-4 md:p-6 max-w-4xl mx-auto grid gap-3">
+        <div class="grid md:grid-cols-2 gap-3">
+          <div class="relative">
+            <label class="block text-xs font-medium text-slate-500 mb-1">Mit keresel?</label>
+            <select class="w-full rounded-xl border-slate-200 focus:border-brand-orange focus:ring-brand-orange">
+              <option>lakás</option>
+              <option>ház</option>
+              <option>telek</option>
+              <option>garázs</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Hol keresel?</label>
+            <input placeholder="Település, utca, kerület…" class="w-full rounded-xl border-slate-200 focus:border-brand-orange focus:ring-brand-orange"/>
+          </div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-3">
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Ár (millió Ft)</label>
+            <input type="text" placeholder="pl. 30–80" class="w-full rounded-xl border-slate-200 focus:border-brand-orange focus:ring-brand-orange"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Alapterület (m²)</label>
+            <input type="text" placeholder="pl. 40+" class="w-full rounded-xl border-slate-200 focus:border-brand-orange focus:ring-brand-orange"/>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-slate-500 mb-1">Szobaszám</label>
+            <input type="text" placeholder="pl. 2+" class="w-full rounded-xl border-slate-200 focus:border-brand-orange focus:ring-brand-orange"/>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between gap-3 flex-wrap">
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" class="rounded text-brand-orange focus:ring-brand-orange">
+            <span>FIX 3% <a class="underline decoration-dotted" href="#">(mi ez?)</a></span>
+          </label>
+          <label class="flex items-center gap-2 text-sm">
+            <input type="checkbox" class="rounded text-brand-orange focus:ring-brand-orange">
+            <span>Új építésű</span>
+          </label>
+
+          <button class="ml-auto inline-flex items-center gap-2 bg-[#E65A2E] text-white px-5 py-3 rounded-xl hover:opacity-95">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 24 24" fill="currentColor"><path d="M10 4a6 6 0 104.472 10.123l4.702 4.703 1.414-1.415-4.703-4.702A6 6 0 0010 4zm0 2a4 4 0 110 8 4 4 0 010-8z"/></svg>
+            Keresés
+          </button>
+        </div>
+
+        <details class="mt-1">
+          <summary class="cursor-pointer text-sm text-slate-600">Részletes kereső</summary>
+          <div class="pt-3 grid md:grid-cols-3 gap-3">
+            <select class="rounded-xl border-slate-200"><option>Állapot</option><option>Új</option><option>Felújított</option></select>
+            <select class="rounded-xl border-slate-200"><option>Fűtés</option><option>Távfűtés</option><option>Gáz</option></select>
+            <select class="rounded-xl border-slate-200"><option>Energiacímke</option><option>A+</option><option>B</option></select>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Eredmények / kártyák -->
+  <main class="max-w-6xl mx-auto px-4 py-10 space-y-10">
+    <!-- Infó doboz (FIX 3%) -->
+    <div class="bg-white rounded-2xl shadow-soft p-5">
+      <h2 class="text-lg font-semibold mb-2">Első ingatlanod? <span class="text-brand-orange">FIX 3%</span> konstrukció</h2>
+      <p class="text-slate-600 mb-4">Keresd a FIX 3% emblémával ellátott hirdetéseket – ezek megfelelhetnek a 3%-os lakáshitel feltételeinek.</p>
+      <a href="#" class="inline-block bg-brand-navy text-white px-4 py-2 rounded-lg">Bővebben</a>
+    </div>
+
+    <!-- Találatok rács -->
+    <section>
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-xl font-semibold">Találatok</h3>
+        <div class="text-sm text-slate-600">Rendezés:
+          <select class="ml-2 rounded-md border-slate-300">
+            <option>Legfrissebb</option>
+            <option>Ár szerint ⇡</option>
+            <option>Ár szerint ⇣</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Kártya sablon ×6 (demo adatokkal) -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1502005229762-cf1b2da7c841?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Újépítésű lakás • XIII.</h4>
+            <p class="text-sm text-slate-600">54 m² • 2 szoba • erkély</p>
+            <div class="mt-2 font-semibold text-brand-navy">79,9 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1554995207-c18c203602cb?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Felújított lakás • XI.</h4>
+            <p class="text-sm text-slate-600">46 m² • 1+1 szoba</p>
+            <div class="mt-2 font-semibold text-brand-navy">59,5 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1507089947368-19c1da9775ae?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Családi ház • Érd</h4>
+            <p class="text-sm text-slate-600">120 m² • 4 szoba • kert</p>
+            <div class="mt-2 font-semibold text-brand-navy">119,0 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+
+        <!-- még három gyors másolat -->
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1560448075-bb4caa6c8e28?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Panel lakás • XIV.</h4>
+            <p class="text-sm text-slate-600">52 m² • 2 szoba</p>
+            <div class="mt-2 font-semibold text-brand-navy">45,9 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1501183638710-841dd1904471?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Tégla lakás • V.</h4>
+            <p class="text-sm text-slate-600">61 m² • 2 szoba</p>
+            <div class="mt-2 font-semibold text-brand-navy">98,0 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+
+        <article class="bg-white rounded-2xl shadow-soft overflow-hidden">
+          <div class="h-40 bg-[url('https://images.unsplash.com/photo-1597047084897-51e81819a499?q=80&w=1200&auto=format&fit=crop')] bg-cover bg-center"></div>
+          <div class="p-4">
+            <h4 class="font-semibold">Sorház • Budaörs</h4>
+            <p class="text-sm text-slate-600">95 m² • 3 szoba</p>
+            <div class="mt-2 font-semibold text-brand-navy">89,0 M Ft</div>
+            <button class="mt-3 w-full border rounded-xl py-2 hover:bg-slate-50">Részletek</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- „Prémium partner” blokk (demo) -->
+    <section class="bg-white rounded-2xl shadow-soft p-6">
+      <h3 class="text-xl font-semibold mb-4">Prémium Partner</h3>
+      <div class="grid sm:grid-cols-[100px_1fr] gap-4 items-center">
+        <div class="w-24 h-24 rounded-xl bg-[url('https://images.unsplash.com/photo-1502685104226-ee32379fefbe?q=80&w=500&auto=format&fit=crop')] bg-cover bg-center"></div>
+        <div>
+          <h4 class="font-semibold">Gacsó István</h4>
+          <p class="text-sm text-slate-600">Balaton környéke • 18 éve az ingatlanpiacon</p>
+          <p class="text-sm mt-1">Jutalék: <strong>bruttó 3,3–3,8%</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Lábléc -->
+  <footer class="bg-brand-navy text-white">
+    <div class="max-w-6xl mx-auto px-4 py-10 grid md:grid-cols-3 gap-8">
+      <div>
+        <h5 class="font-semibold mb-3">Kapcsolat</h5>
+        <p class="text-sm opacity-90">+36 1 237 2065<br/>segitunk@ingatlan.com<br/>H–P 10:00–17:00</p>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-3">Hasznos</h5>
+        <ul class="space-y-2 text-sm opacity-90">
+          <li><a href="#" class="hover:underline">Hirdetés feladása</a></li>
+          <li><a href="#" class="hover:underline">Adatvédelem</a></li>
+          <li><a href="#" class="hover:underline">Impresszum</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5 class="font-semibold mb-3">United Platforms</h5>
+        <div class="flex items-center gap-3 text-sm opacity-90">
+          <span>ingatlan.com</span> • <span>money.hu</span> • <span>hasznaltauto.hu</span>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10">
+      <div class="max-w-6xl mx-auto px-4 py-4 text-xs opacity-80">
+        © ingatlanDemo – bemutató oldal (design-inspiráció: ingatlan.com)
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobil menü toggle
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileNav = document.getElementById("mobileNav");
+    menuBtn?.addEventListener("click", () => {
+      mobileNav.classList.toggle("hidden");
+    });
+  </script>
+</body>
+</html>
