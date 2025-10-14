@@ -5,206 +5,151 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ingatlan-Demo</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23233B5E'/><path d='M15 60 L50 30 L85 60 V85 H60 V65 H40 V85 H15 Z' fill='%23FF6A3D'/></svg>">
-  <meta name="description" content="Ingatlan-Demo – minta lakáskereső felület mock bejelentkezéssel, FIX 3% információval és listázással.">
+  <link rel="icon" href="favicon.ico" />
 </head>
 <body>
-  <!-- Top notice -->
-  <div class="topbar">
-    <button class="menu-btn" aria-label="Menü megnyitása" id="openMenu">☰</button>
-    <a class="brand" href="#" aria-label="Ingatlan-Demo kezdőlap">
-      <span class="logo"></span><span class="brand-text">ingatlan<span class="dot">•</span>demo</span>
-    </a>
-    <nav class="top-actions">
-      <button id="loginOpen" class="btn ghost small">Bejelentkezés</button>
-      <button id="postOpen" class="btn small">Hirdetés feladása</button>
+
+  <!-- Fejléc -->
+  <header class="topbar">
+    <div class="logo-area">
+      <button id="menuBtn" class="icon-btn">☰</button>
+      <a href="#" class="brand">ingatlan<span class="dot">•</span>demo</a>
+    </div>
+    <nav class="topnav">
+      <a href="#" id="navNewSearch">Új keresés</a>
+      <a href="#" id="navPost">Hirdetés feladása</a>
+      <a href="#" id="navFix">FIX 3% hitel</a>
+      <a href="#" id="navCsok">Családtámogatások (CSOK+)</a>
+      <a href="#" id="navAgents">Ingatlanközvetítők</a>
+      <a href="#" id="navLogin">Bejelentkezés / Regisztráció</a>
     </nav>
-  </div>
-
-  <!-- Drawer menu -->
-  <aside id="drawer" class="drawer" aria-hidden="true">
-    <div class="drawer-head">
-      <span class="brand-mini">ingatlan•demo</span>
-      <button id="drawerClose" class="icon-btn" aria-label="Bezárás">✕</button>
-    </div>
-    <ul class="drawer-links">
-      <li><a href="#" class="drawer-link">Új keresés</a></li>
-      <li><button class="linklike" id="openFix">FIX 3% lakáshitel</button></li>
-      <li><a href="#" class="drawer-link">Családtámogatások (CSOK+)</a></li>
-      <li><a href="#" class="drawer-link">Ingatlanközvetítők</a></li>
-      <li><button id="loginOpen2" class="linklike">Bejelentkezés / Regisztráció</button></li>
-    </ul>
-  </aside>
-  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
-
-  <!-- Hero search -->
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="tabs" role="tablist">
-        <button role="tab" aria-selected="true" class="tab active" data-kind="elado">Eladó</button>
-        <button role="tab" aria-selected="false" class="tab" data-kind="kiado">Kiadó</button>
-      </div>
-
-      <form id="searchForm" class="search">
-        <label class="sr-only" for="type">Típus</label>
-        <select id="type" class="field">
-          <option value="lakas">lakás</option>
-          <option value="haz">ház</option>
-          <option value="telek">telek</option>
-        </select>
-
-        <label class="sr-only" for="where">Hol keresel?</label>
-        <input id="where" class="field" placeholder="Hol keresel? (város, kerület)">
-        
-        <label class="sr-only" for="price">Ár</label>
-        <input id="price" class="field" placeholder="ár (millió Ft)" inputmode="numeric">
-
-        <label class="sr-only" for="size">Alapterület</label>
-        <input id="size" class="field" placeholder="alapterület (m²)" inputmode="numeric">
-
-        <label class="sr-only" for="rooms">Szobaszám</label>
-        <input id="rooms" class="field" placeholder="szobaszám" inputmode="numeric">
-
-        <label class="chk"><input type="checkbox" id="fixChk"> <span>FIX 3% <button type="button" class="mi-ez" id="openFix2" aria-label="Mi ez?">mi ez?</button></span></label>
-        <label class="chk"><input type="checkbox" id="newBuild"> <span>Új építésű</span></label>
-
-        <button class="btn primary" id="searchBtn" type="submit">Keresés</button>
-        <details class="advanced">
-          <summary>Részletes kereső</summary>
-          <div class="adv-grid">
-            <label>Építés éve (min)<input id="yearMin" class="field" inputmode="numeric"></label>
-            <label>Építés éve (max)<input id="yearMax" class="field" inputmode="numeric"></label>
-            <label>Emelet<input id="floor" class="field" inputmode="numeric"></label>
-            <label>Erkély<input id="balcony" class="field" placeholder="igen/nem"></label>
-          </div>
-        </details>
-      </form>
-    </div>
   </header>
 
-  <!-- FIX 3% modal -->
-  <dialog id="fixModal" class="modal">
-    <form method="dialog" class="modal-body">
-      <h2>FIX 3% tájékoztató (Demo)</h2>
-      <p>Ez egy bemutató. A valós program részletei a hivatalos kormányzati oldalakon érhetők el. A demó csak <strong>szűrő címkét</strong> ad a találatokhoz.</p>
-      <p><small>Figyelem: a demó semmit sem garantál, nem pénzügyi tanácsadás.</small></p>
-      <a href="#" class="link" rel="nofollow">Részletek (példa link)</a>
-      <menu>
-        <button class="btn">Rendben</button>
-      </menu>
+  <!-- Mobil menü -->
+  <aside id="sideMenu" class="side-menu">
+    <div class="side-head">
+      <span class="brand-mini">ingatlan•demo</span>
+      <button class="close-btn" id="closeMenu">✕</button>
+    </div>
+    <a href="#">Új keresés</a>
+    <a href="#" id="openPost2">Hirdetés feladása</a>
+    <a href="#" id="openFix2">FIX 3% hitel</a>
+    <a href="#">Családtámogatások</a>
+    <a href="#">Ingatlanközvetítők</a>
+    <a href="#" id="openLogin2">Bejelentkezés</a>
+  </aside>
+  <div id="overlay" class="overlay"></div>
+
+  <!-- Kereső -->
+  <section class="hero">
+    <div class="tabs">
+      <button class="tab active" data-type="elado">Eladó</button>
+      <button class="tab" data-type="kiado">Kiadó</button>
+    </div>
+    <form id="searchForm" class="search">
+      <input type="text" placeholder="Hol keresel?" id="city">
+      <input type="number" placeholder="Ár (millió Ft)" id="price">
+      <input type="number" placeholder="Alapterület (m²)" id="size">
+      <input type="number" placeholder="Szobaszám" id="rooms">
+      <label class="chk"><input type="checkbox" id="fixChk"> FIX 3%</label>
+      <label class="chk"><input type="checkbox" id="newChk"> Új építésű</label>
+      <button type="submit" class="btn primary">Keresés</button>
     </form>
-  </dialog>
+  </section>
 
-  <!-- Results -->
+  <!-- Találatok -->
   <main class="wrap">
-    <section aria-labelledby="resultsTitle" class="results">
-      <h2 id="resultsTitle">Találatok</h2>
-      <div id="results" class="cards"></div>
-      <div id="noResults" class="muted" hidden>Nincs találat a megadott feltételekre.</div>
-    </section>
-
-    <!-- Premium Partner -->
-    <section class="partner">
-      <h2>Prémium Partner</h2>
-      <article class="partner-card">
-        <img src="https://placehold.co/320x220" alt="Partner fotó">
-        <div class="partner-body">
-          <span class="badge">Prémium Partner</span>
-          <h3>Kovács Dóra</h3>
-          <p><span>Budapest, Balaton térség, Győr</span></p>
-          <p class="fine">18 éve a rendszerben • Jutalék: <strong>bruttó 3,0–3,8%</strong></p>
-          <a href="#" class="btn ghost">Megnézem az összes Partnert</a>
-        </div>
-      </article>
-    </section>
-
-    <!-- News -->
-    <section class="news">
-      <h2>Legfrissebb hírek, cikkek</h2>
-      <article class="news-item">
-        <img src="https://placehold.co/600x300" alt="">
-        <div>
-          <span class="tag">Otthon start</span>
-          <h3>Megéri most új építésű lakást venni? (demo cikk)</h3>
-          <p>Gyorsuló piaci aktivitás és kedvező finanszírozási környezet – összefoglaló demó szöveg.</p>
-        </div>
-      </article>
-      <details class="more-news"><summary>További hírek, cikkek</summary>
-        <ul class="bullets">
-          <li>Lakásárindex (demó): szeptemberi összefoglaló</li>
-          <li>10 tipp első lakásod megvásárlásához</li>
-        </ul>
-      </details>
-    </section>
-
-    <!-- App section -->
-    <section class="apps">
-      <h2>Töltsd le a mobilappot!</h2>
-      <p>Vidd magaddal az Ingatlan-Demo teljes kínálatát a zsebedben.</p>
-      <div class="store-badges">
-        <a class="store appstore" href="#" aria-label="Letöltés az App Store-ból">App Store</a>
-        <a class="store gplay" href="#" aria-label="Letöltés a Google Play-ről">Google Play</a>
-      </div>
-    </section>
+    <h2>Találatok</h2>
+    <div id="results" class="cards"></div>
+    <div id="noResults" class="muted" hidden>Nincs találat.</div>
   </main>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="cluster">
+  <!-- Prémium Partner -->
+  <section class="partner">
+    <h2>Prémium Partner</h2>
+    <article class="partner-card">
+      <img src="https://images.unsplash.com/photo-1598257006626-82a4a22bba6d?w=800" alt="Partner">
       <div>
-        <h4>Ingatlan-Demo csoport</h4>
-        <ul>
-          <li><a href="#">ingatlan-demo.hu</a></li>
-          <li><a href="#">money-demo.hu</a></li>
-          <li><a href="#">auto-demo.hu</a></li>
-        </ul>
+        <span class="badge">Prémium Partner</span>
+        <h3>Gacsó István</h3>
+        <p>Balaton, Százhalombatta, XVI. kerület</p>
+        <p class="fine">18 éve az oldalon • Jutalék: 3.3–3.8%</p>
       </div>
-      <div>
-        <h4>Kapcsolat</h4>
-        <p>+36 1 555 0000<br><a href="mailto:hello@ingatlan-demo.hu">hello@ingatlan-demo.hu</a><br>
-        Munkanapokon 10:00–17:00</p>
-      </div>
-      <div>
-        <h4>Jogi</h4>
-        <ul>
-          <li><a href="#">Általános Szerződési Feltételek</a></li>
-          <li><a href="#">Adatvédelmi Szabályzat</a></li>
-          <li><a href="#">Sütik kezelése</a></li>
-          <li><a href="#" class="muted">© Ingatlan-Demo – 2025</a></li>
-        </ul>
-      </div>
+    </article>
+  </section>
+
+  <!-- FIX 3% információ -->
+  <section class="fix-info">
+    <h2>FIX 3% lakáshitel</h2>
+    <p>A program célja, hogy megfizethető kamattal segítse az első lakásvásárlókat.</p>
+    <button class="btn" id="openFix">Részletek</button>
+  </section>
+
+  <!-- App letöltés -->
+  <section class="apps">
+    <h2>Töltsd le a mobilalkalmazást!</h2>
+    <div class="badges">
+      <a href="#" class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Available_on_the_App_Store_%28black%29_SVG.svg" alt="App Store"></a>
+      <a href="#" class="store"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
     </div>
+  </section>
+
+  <!-- Lábléc -->
+  <footer class="footer">
+    <p>© Ingatlan-Demo 2025 • Ez egy oktatási célú mintaoldal, nem áll kapcsolatban az ingatlan.com-mal.</p>
   </footer>
 
-  <!-- Login dialog -->
+  <!-- MODÁLOK -->
+  <!-- Bejelentkezés -->
   <dialog id="loginModal" class="modal">
-    <form method="dialog" class="modal-body" id="loginForm">
-      <h2>Bejelentkezés</h2>
-      <label>E-mail<input type="email" id="loginEmail" class="field" required placeholder="te@pelda.hu"></label>
-      <label>Jelszó<input type="password" id="loginPass" class="field" required placeholder="••••••••"></label>
-      <label class="chk"><input type="checkbox" id="remember"> <span>Emlékezz rám</span></label>
-      <menu>
-        <button class="btn ghost" value="cancel">Mégse</button>
-        <button class="btn" id="loginBtn">Belépés</button>
-      </menu>
-      <p class="fine">Demó fiók: <code>demo@demo.hu</code> / <code>demo123</code></p>
-      <div id="loginMsg" class="muted"></div>
+    <div class="modal-head">
+      <h3>Bejelentkezés</h3>
+      <button class="close-btn" id="closeLogin">✕</button>
+    </div>
+    <form id="loginForm" class="modal-body">
+      <label>E-mail<input type="email" id="loginEmail" required></label>
+      <label>Jelszó<input type="password" id="loginPass" required></label>
+      <label class="chk"><input type="checkbox" id="remember"> Emlékezz rám</label>
+      <button type="submit" class="btn">Belépés</button>
+      <p class="fine">Demó fiók: demo@demo.hu / demo123</p>
     </form>
   </dialog>
 
-  <!-- Post listing dialog (demo only) -->
+  <!-- Hirdetés -->
   <dialog id="postModal" class="modal">
-    <form method="dialog" class="modal-body" id="postForm">
-      <h2>Hirdetés feladása (Demo)</h2>
-      <label>Cím<input class="field" required></label>
-      <label>Ár (millió Ft)<input class="field" inputmode="numeric" required></label>
-      <label>Leírás<textarea class="field" rows="4" required></textarea></label>
-      <menu>
-        <button class="btn ghost" value="cancel">Mégse</button>
-        <button class="btn">Mentés (nem végleges)</button>
-      </menu>
-      <p class="fine">Ez csak prototípus – nem kerül publikálásra.</p>
+    <div class="modal-head">
+      <h3>Hirdetés feladása</h3>
+      <button class="close-btn" id="closePost">✕</button>
+    </div>
+    <form id="postForm" class="modal-body">
+      <label>Cím<input required></label>
+      <label>Ár (millió Ft)<input type="number" required></label>
+      <label>Leírás<textarea rows="4" required></textarea></label>
+      <button type="submit" class="btn">Mentés (demo)</button>
     </form>
+  </dialog>
+
+  <!-- FIX 3% -->
+  <dialog id="fixModal" class="modal">
+    <div class="modal-head">
+      <h3>FIX 3% Lakáshitel (Demo)</h3>
+      <button class="close-btn" id="closeFix">✕</button>
+    </div>
+    <div class="modal-body">
+      <p>A FIX 3% szűrő segít olyan ingatlanokat találni, melyek megfelelhetnek a kedvezményes hitel feltételeinek.</p>
+      <p class="fine">Ez a demó nem valós banki ajánlat.</p>
+    </div>
+  </dialog>
+
+  <!-- Részletek -->
+  <dialog id="detailModal" class="modal">
+    <div class="modal-head">
+      <h3>Ingatlan részletek</h3>
+      <button class="close-btn" id="closeDetail">✕</button>
+    </div>
+    <div class="modal-body" id="detailContent">
+      <!-- JS tölti be -->
+    </div>
   </dialog>
 
   <script src="app.js"></script>
