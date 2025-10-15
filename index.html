@@ -3,40 +3,44 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tamas‑Ingatlan – Profi referencia (kék témával)</title>
+  <title>Profi ingatlan referencia – semleges logóval</title>
+  <!-- Favicon: háztető ikon (SVG data URI) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath d='M8 30L32 12l24 18v20a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V30z' fill='%231d4ed8'/%3E%3Cpath d='M24 52V36h16v16' fill='%23ffffff'/%3E%3C/svg%3E"/>
   <meta name="description" content="Ingatlan kereső demó: Eladó/Kiadó, CSOK+, FIX 3% lakáshitel, Ingatlanoskereső, prémium partnerek, hírek, app, hirdetésfeladás. Mobil-first, magyar UI."/>
   <style>
     :root{
-      --blue:#1d4ed8; --blue-dark:#0b1d46; --blue-ink:#0f1f4d;
-      --bg:#f3f6fb; --card:#ffffff; --line:#e6eaf3; --text:#0b1220; --muted:#63708a; --cta:#e24a2a;
+      --blue:#1d4ed8; --blue-dark:#0b1d46; --ink:#0f1f4d;
+      --bg:#f3f6fb; --card:#fff; --line:#e6eaf3; --text:#0b1220; --muted:#63708a;
       --radius:14px; --shadow:0 18px 40px rgba(16,24,40,.12);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--text)}
 
-    /* ========== HEADER ========== */
+    /* ======= HEADER ======= */
     .topbar{position:sticky;top:0;z-index:90;background:var(--blue-dark);color:#fff}
     .topbar-inner{max-width:1240px;margin:0 auto;padding:10px 14px;display:flex;align-items:center;gap:14px}
-    .brand{font-weight:900;letter-spacing:.2px;text-decoration:none;color:#fff}
-    .brand .hi{color:var(--blue)} .brand .dot{color:#fff}
-    .nav{margin-left:auto;display:flex;gap:18px;align-items:center}
-    .nav a{color:#fff;text-decoration:none;font-weight:700;opacity:.95}
+    .brand{display:inline-flex;align-items:center;gap:10px;text-decoration:none}
+    .brand svg{display:block}
+    .nav{margin-left:auto;display:flex;gap:16px;align-items:center}
+    .nav a{color:#fff;text-decoration:none;font-weight:700}
     .icon-btn{border:none;background:transparent;color:#fff;font-size:22px;cursor:pointer}
 
     /* Mega menu */
     .mega-wrap{position:relative}
     .mega-btn{background:transparent;border:none;color:#fff;font-weight:800;cursor:pointer;padding:8px 10px;border-radius:10px}
     .mega-btn:after{content:"▾";margin-left:6px;font-size:12px}
-    .mega{position:absolute;left:0;top:100%;background:#fff;color:var(--text);width:min(980px,96vw);border-radius:16px;box-shadow:var(--shadow);padding:16px;display:none}
+    .mega{position:absolute;left:0;top:100%;background:#fff;color:var(--text);width:min(1080px,96vw);border-radius:16px;box-shadow:var(--shadow);padding:18px;display:none}
     .mega.show{display:block}
     .mega-grid{display:grid;gap:16px}
     @media(min-width:768px){.mega-grid{grid-template-columns:1.1fr .9fr}}
     .mega h3{margin:0 0 6px 0}
     .mega p{margin:0 0 10px 0;color:var(--muted)}
-    .mega img{width:100%;height:180px;object-fit:cover;border-radius:12px}
+    .mega img{width:100%;height:220px;object-fit:cover;border-radius:12px}
     .mega .links{display:grid;gap:8px}
-    .mega .links a{color:var(--blue-ink);text-decoration:none;font-weight:700}
+    .mega .links a{color:var(--ink);text-decoration:none;font-weight:700}
+    .mega .bullets{display:grid;gap:6px;margin-top:8px}
+    .mega .bullets li{color:var(--muted)}
 
     /* Drawer (mobile) */
     .drawer{position:fixed;inset:0 40% 0 -100%;background:var(--blue-dark);transform:translateX(-100%);transition:.25s;z-index:95;color:#fff}
@@ -47,56 +51,57 @@
     .scrim{position:fixed;inset:0;background:rgba(0,0,0,.35);opacity:0;pointer-events:none;transition:.25s;z-index:94}
     .scrim.show{opacity:1;pointer-events:auto}
 
-    /* Banner */
-    .banner{background:#0f1f4d;color:#fff}
+    /* Dismissable banner */
+    .banner{background:var(--ink);color:#fff}
     .banner-inner{max-width:1240px;margin:0 auto;padding:10px 14px;display:flex;gap:10px;align-items:center}
     .banner .x{margin-left:auto;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;border-radius:10px;padding:4px 8px;cursor:pointer}
 
-    /* HERO SEARCH */
+    /* ======= HERO SEARCH (kék keresősáv) ======= */
     .hero{padding:20px 14px}
-    .search-card{max-width:1100px;margin:0 auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:16px}
-    .toggle{display:inline-flex;border-radius:999px;overflow:hidden;border:1px solid var(--line)}
-    .toggle button{padding:8px 14px;border:none;background:transparent;font-weight:900;color:#1e293b;cursor:pointer}
-    .toggle .active{background:var(--blue);color:#fff}
-
-    .grid{display:grid;gap:12px}
-    .field{display:flex;flex-direction:column;gap:6px}
-    .field label{font-size:12px;color:var(--muted)}
-    .field input,.field select{padding:12px;border:1px solid var(--line);border-radius:10px;background:#fff;font-size:16px}
-    .suffix{position:relative}
-    .suf{position:absolute;right:10px;bottom:12px;color:var(--muted);font-size:14px}
-    .checks{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-
+    .search-card{max-width:1100px;margin:0 auto;background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);padding:0;overflow:hidden}
+    .search-top{background:var(--blue);color:#fff;padding:12px;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+    .toggle{display:inline-flex;border-radius:999px;overflow:hidden;border:1px solid rgba(255,255,255,.35)}
+    .toggle button{padding:8px 14px;border:none;background:transparent;font-weight:900;color:#fff;cursor:pointer}
+    .toggle .active{background:#fff;color:#1e293b}
+    .search-grid{display:grid;gap:10px;padding:12px;grid-template-columns:repeat(2,1fr)}
+    @media(min-width:880px){.search-grid{grid-template-columns:repeat(6,1fr)}}
+    .field{position:relative}
+    .field input,.field select{width:100%;padding:12px 12px;border:1px solid var(--line);border-radius:10px;font-size:16px}
+    .suf{position:absolute;right:10px;top:50%;transform:translateY(-50%);font-size:12px;color:#667085}
+    .checks{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:0 12px 12px}
+    .search-actions{display:flex;gap:10px;align-items:center;padding:0 12px 14px}
     .btn{padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:#fff;font-weight:900;cursor:pointer}
     .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
-    .btn.link{background:transparent;border:none;color:#0b4aa2;text-align:left;padding-left:0}
-
-    .advanced{display:none;margin-top:10px;border-top:1px dashed var(--line);padding-top:12px}
+    .btn.link{background:transparent;border:none;color:#0b4aa2}
+    .advanced{display:none;border-top:1px dashed var(--line);padding:12px}
     .advanced.show{display:block}
+    .adv-grid{display:grid;gap:10px}
+    @media(min-width:880px){.adv-grid{grid-template-columns:repeat(6,1fr)}}
 
-    /* Sections */
+    /* ======= Sections common ======= */
     .section{max-width:1240px;margin:28px auto;padding:0 14px}
     .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
     .link{color:#0b4aa2;text-decoration:none;font-weight:800}
-
-    /* Grids */
     .grid-list{display:grid;gap:14px}
-    @media(min-width:768px){.grid.cols-6{grid-template-columns:repeat(6,1fr)}.grid-list{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:900px){.grid-list{grid-template-columns:repeat(3,1fr)}}
 
-    /* Cards */
     .card{background:#fff;border-radius:14px;box-shadow:var(--shadow);overflow:hidden}
-    .card img{width:100%;height:180px;object-fit:cover}
+    .card img{width:100%;height:200px;object-fit:cover}
     .p16{padding:16px}
     .muted{color:var(--muted)}
     .badge{display:inline-block;background:var(--blue);color:#fff;padding:6px 10px;border-radius:8px;font-size:12px}
 
-    /* App */
-    .app{background:var(--blue-ink);color:#fff}
+    /* Right rail CTA */
+    .right-rail{background:var(--ink);color:#fff;border-radius:14px;box-shadow:var(--shadow)}
+    .right-rail .p16{padding:18px}
+
+    /* ======= App block ======= */
+    .app{background:var(--ink);color:#fff}
     .app-inner{max-width:1240px;margin:0 auto;padding:28px 14px;display:grid;gap:20px}
-    @media(min-width:768px){.app-inner{grid-template-columns:1.2fr .8fr;align-items:center}}
+    @media(min-width:900px){.app-inner{grid-template-columns:1.2fr .8fr;align-items:center}}
     .stores{display:flex;gap:12px;flex-wrap:wrap}
-    .badge-store{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#111;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:900}
-    .badge-store svg{width:22px;height:22px}
+    .store{display:inline-flex;align-items:center;gap:10px;background:#fff;color:#111;text-decoration:none;padding:12px 16px;border-radius:12px;font-weight:900}
+    .store .logo{width:22px;height:22px;display:inline-block}
     .phone{justify-self:center;width:240px;height:480px;border:10px solid #111;border-bottom-width:16px;border-top-width:16px;border-radius:30px;background:linear-gradient(180deg,#d9e6ff,#fff)}
 
     /* Footer */
@@ -112,57 +117,75 @@
     .modal-body{padding:16px}
     .modal-foot{padding:14px 16px;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}
     .xbtn{border:1px solid var(--line);background:#fff;border-radius:10px;padding:6px 10px;cursor:pointer}
-
   </style>
 </head>
 <body>
-  <!-- HEADER with MEGA MENUS -->
+  <!-- ======= HEADER with MEGA MENUS ======= -->
   <header class="topbar">
     <div class="topbar-inner">
       <button class="icon-btn" id="openMenu" aria-label="Menü">☰</button>
-      <a href="#" class="brand"><span class="hi">Tamas</span>-Ingatlan<span class="dot">.</span>hu</a>
+      <a href="#" class="brand" aria-label="Főoldal">
+        <!-- Semleges logó: háztető -->
+        <svg width="28" height="28" viewBox="0 0 64 64" aria-hidden="true">
+          <path d="M8 30L32 12l24 18v20a2 2 0 0 1-2 2H10a2 2 0 0 1-2-2V30z" fill="#1d4ed8"/>
+          <path d="M24 52V36h16v16" fill="#ffffff"/>
+        </svg>
+      </a>
 
       <nav class="nav">
+        <!-- CSOK+ -->
         <div class="mega-wrap">
           <button class="mega-btn" data-mega="megaCsok">CSOK+</button>
           <div class="mega" id="megaCsok">
             <div class="mega-grid">
               <div>
                 <h3>CSOK+ röviden</h3>
-                <p>A CSOK+ államilag támogatott családtámogatás: kedvezményes hitel és vissza nem térítendő támogatások gyermekvállaláshoz kötve.</p>
+                <p>Államilag támogatott családtámogatás: kedvezményes hitel és vissza nem térítendő elemek gyermekvállaláshoz.</p>
+                <ul class="bullets">
+                  <li>Jogosultság: TB jogviszony, gyermekvállalás</li>
+                  <li>Felhasználás: új/lakott ingatlan, bővítés</li>
+                  <li>Összeg: gyermekek számától függ</li>
+                </ul>
                 <div class="links">
                   <a href="#">Feltételek és jogosultság</a>
-                  <a href="#">Mekkora összeg igényelhető?</a>
-                  <a href="#">Milyen ingatlanokra vehető igénybe?</a>
+                  <a href="#">Összeg, önerő, igazolások</a>
+                  <a href="#">Gyakori hibák az igénylésnél</a>
                 </div>
               </div>
               <div>
-                <img src="https://picsum.photos/seed/csok/960/540" alt="CSOK illusztráció" />
+                <img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200&auto=format&fit=crop" alt="CSOK illusztráció"/>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- FIX 3% -->
         <div class="mega-wrap">
           <button class="mega-btn" data-mega="megaFix">FIX 3% lakáshitel</button>
           <div class="mega" id="megaFix">
             <div class="mega-grid">
               <div>
                 <h3>Mi az a FIX 3%?</h3>
-                <p>Támogatott lakáshitel konstrukció, legfeljebb ~3% körüli kamattal. A megfelelés a hitelintézetnél és a hatályos szabályozás szerint dől el.</p>
+                <p>Támogatott lakáshitel ~3% körüli kamattal. A megfelelés banki bírálat és hatályos jogszabály alapján történik.</p>
+                <ul class="bullets">
+                  <li>Első lakásnál kedvezőbb feltételek</li>
+                  <li>Jövedelem, életkor, ingatlanparaméterek</li>
+                  <li>Előminősítés (demó)</li>
+                </ul>
                 <div class="links">
                   <a href="#">Ki igényelheti?</a>
                   <a href="#">Előminősítés menete</a>
-                  <a href="#">Gyakori kérdések</a>
+                  <a href="#">GYIK</a>
                 </div>
               </div>
               <div>
-                <img src="https://picsum.photos/seed/fix3/960/540" alt="Fix 3% illusztráció" />
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=1200&auto=format&fit=crop" alt="Fix 3% illusztráció"/>
               </div>
             </div>
           </div>
         </div>
 
+        <!-- Ingatlanoskereső -->
         <div class="mega-wrap">
           <button class="mega-btn" data-mega="megaSearch">Ingatlanoskereső</button>
           <div class="mega" id="megaSearch">
@@ -170,14 +193,19 @@
               <div>
                 <h3>Találd meg a megfelelő szakértőt</h3>
                 <p>Település és specializáció szerint szűrhető ügynöklista, valós értékelésekkel.</p>
+                <ul class="bullets">
+                  <li>Értékelések és referencia-eladások</li>
+                  <li>Jutalék sávok átláthatóan</li>
+                  <li>Azonnali kapcsolatfelvétel</li>
+                </ul>
                 <div class="links">
-                  <a href="#">Budapest – panel szakértők</a>
-                  <a href="#">Balaton – nyaraló specialisták</a>
+                  <a href="#">Budapest – panel</a>
+                  <a href="#">Balaton – nyaraló</a>
                   <a href="#">Új építésű projektek</a>
                 </div>
               </div>
               <div>
-                <img src="https://picsum.photos/seed/agents/960/540" alt="Ingatlanosok illusztráció" />
+                <img src="https://images.unsplash.com/photo-1559599101-f09722fb4948?q=80&w=1200&auto=format&fit=crop" alt="Ingatlanosok illusztráció"/>
               </div>
             </div>
           </div>
@@ -190,107 +218,126 @@
     </div>
   </header>
 
-  <!-- MOBILE drawer -->
-  <aside class="drawer" id="drawer">
-    <div class="drawer-head">
-      <span class="brand"><span class="hi">Tamas</span>-Ingatlan</span>
-      <button class="icon-btn" id="closeMenu">✕</button>
+  <!-- ======= Banner ======= -->
+  <div class="banner" id="banner">
+    <div class="banner-inner">
+      <strong>Új:</strong> CSOK+ és FIX 3% tájékoztató megújult.
+      <button class="x" id="closeBanner">✕</button>
     </div>
-    <nav class="drawer-nav">
-      <button data-open="megaCsok">CSOK+</button>
-      <button data-open="megaFix">FIX 3% lakáshitel</button>
-      <button data-open="megaSearch">Ingatlanoskereső</button>
-      <a href="#" id="mLogin">Bejelentkezés</a>
-      <a href="#" id="mRegister">Regisztráció</a>
-      <a href="#" id="mSubmit">Hirdetés feladása</a>
-    </nav>
-  </aside>
-  <div class="scrim" id="scrim"></div>
+  </div>
 
-  <!-- Banner -->
-  <div class="banner" id="banner"><div class="banner-inner"><strong>Új:</strong> CSOK+ és FIX 3% tájékoztató megújult. <button class="x" id="closeBanner">✕</button></div></div>
-
-  <!-- HERO SEARCH -->
+  <!-- ======= HERO SEARCH (kék sáv) ======= -->
   <section class="hero">
     <div class="search-card">
-      <div style="display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:8px">
+      <div class="search-top">
         <div class="toggle">
           <button class="active" id="tabElado">Eladó</button>
           <button id="tabKiado">Kiadó</button>
         </div>
+        <div style="font-weight:900">Mindenhol jó, de a legjobb itt vár rád.</div>
       </div>
 
-      <form class="grid" id="searchForm">
-        <div class="field"><label>Mit keresel?</label><select><option>lakás</option><option>ház</option><option>telek</option><option>garázs</option><option>nyaraló</option></select></div>
-        <div class="field"><label>Hol keresel?</label><input type="text" placeholder="település, kerület, környék"></div>
-        <div class="field suffix"><label>ár</label><input type="number" inputmode="numeric" placeholder="pl. 60"><span class="suf">millió Ft</span></div>
-        <div class="field suffix"><label>alapterület</label><input type="number" inputmode="numeric" placeholder="pl. 52"><span class="suf">m²</span></div>
-        <div class="field"><label>szobaszám</label><input type="number" inputmode="numeric" placeholder="pl. 2"></div>
-        <div class="checks">
-          <label><input type="checkbox"> Új építésű</label>
-          <label><input type="checkbox" id="fix3Chk"> FIX 3%</label>
+      <div class="search-grid">
+        <div class="field">
+          <select>
+            <option>lakás</option><option>ház</option><option>telek</option><option>garázs</option><option>nyaraló</option>
+          </select>
         </div>
-        <button class="btn primary" type="submit">🔎 Keresés</button>
-        <button class="btn link" type="button" id="toggleAdvanced">Részletes keresés ▾</button>
-      </form>
+        <div class="field"><input type="text" placeholder="Hol keresel? (város, kerület, környék)"></div>
+        <div class="field"><input type="number" inputmode="numeric" placeholder="ár"><span class="suf">millió Ft</span></div>
+        <div class="field"><input type="number" inputmode="numeric" placeholder="alapterület"><span class="suf">m²</span></div>
+        <div class="field"><input type="number" inputmode="numeric" placeholder="szobaszám"></div>
+        <div class="field" style="display:flex;align-items:center;gap:12px">
+          <label><input type="checkbox"> FIX 3%</label>
+          <label><input type="checkbox"> Új építésű</label>
+        </div>
+      </div>
+
+      <div class="search-actions">
+        <button class="btn primary" id="doSearch">🔎 Keresés</button>
+        <button class="btn link" id="toggleAdvanced">Részletes keresés ▾</button>
+      </div>
 
       <div class="advanced" id="advanced">
-        <div class="grid cols-6">
-          <div class="field"><label>Állapot</label><select><option>Bármilyen</option><option>Új</option><option>Felújított</option><option>Jó állapotú</option></select></div>
-          <div class="field"><label>Fűtés</label><select><option>Mindegy</option><option>Távfűtés</option><option>Cirkó</option><option>Hőszivattyú</option></select></div>
-          <div class="field"><label>Erkély</label><select><option>Mindegy</option><option>Igen</option><option>Nem</option></select></div>
-          <div class="field"><label>Emelet</label><select><option>Mindegy</option><option>Földszint</option><option>1–3</option><option>4+</option></select></div>
-          <div class="field"><label>Parkolás</label><select><option>Mindegy</option><option>Utcai</option><option>Garázs</option><option>Beálló</option></select></div>
-          <div class="field"><label>Lift</label><select><option>Mindegy</option><option>Igen</option><option>Nem</option></select></div>
+        <div class="adv-grid">
+          <div class="field"><select><option>Állapot: mindegy</option><option>Új</option><option>Felújított</option></select></div>
+          <div class="field"><select><option>Fűtés: mindegy</option><option>Távfűtés</option><option>Cirkó</option><option>Hőszivattyú</option></select></div>
+          <div class="field"><select><option>Erkély: mindegy</option><option>Igen</option><option>Nem</option></select></div>
+          <div class="field"><select><option>Emelet: mindegy</option><option>Földszint</option><option>1–3</option><option>4+</option></select></div>
+          <div class="field"><select><option>Parkolás: mindegy</option><option>Utcai</option><option>Garázs</option><option>Beálló</option></select></div>
+          <div class="field"><select><option>Lift: mindegy</option><option>Igen</option><option>Nem</option></select></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- LAKÓPARKOK (mint a mintán) -->
+  <!-- ======= LAKÓPARKOK + jobb oldali kék sáv ======= -->
   <section class="section">
     <div class="section-head"><h2>Lakóparkba költöznél?</h2><a class="link" href="#">Megnézem ▸</a></div>
-    <div class="grid-list">
-      <article class="card"><img src="https://picsum.photos/seed/park1/900/600" alt="Lakópark"><div class="p16"><h3>Rivital Park</h3><p class="muted">Zöldövezeti, energiahatékony otthonok.</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/park2/900/600" alt="Lakópark"><div class="p16"><h3>Budai Walzer IV.</h3><p class="muted">1,5–4 szobás, modern lakások kedvezményekkel.</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/park3/900/600" alt="Lakópark"><div class="p16"><h3>Parkville by Forest</h3><p class="muted">Zöld kertvárosi miliő, közösségi terek.</p></div></article>
+    <div style="display:grid;gap:16px;grid-template-columns:1fr;align-items:start">
+      <div class="grid-list">
+        <!-- 6 kártya, hogy „szórólap” érzet legyen -->
+        <article class="card"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Rivital Park</h3><p class="muted">Zöldövezeti, energiahatékony otthonok.</p></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Budai Walzer IV.</h3><p class="muted">1,5–4 szobás, modern lakások kedvezményekkel.</p></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Parkville by Forest</h3><p class="muted">Kertvárosi miliő, közösségi terek.</p></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1449844908441-8829872d2607?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Riverside 3</h3><p class="muted">Vízpart közeli teraszokkal.</p></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1479839672679-a46483c0e7c8?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Spring Garden</h3><p class="muted">Közösségi kertek, A+ energia.</p></div></article>
+        <article class="card"><img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><h3>Metropolis Garden</h3><p class="muted">Központi elhelyezkedés, szolgáltatásokkal.</p></div></article>
+      </div>
+
+      <!-- Jobb oldali info sáv (kék) -->
+      <aside class="right-rail">
+        <div class="p16">
+          <h3 style="margin-top:0">Tudd meg, mennyit ér az ingatlanod!</h3>
+          <p style="opacity:.9">Első ingatlanod? Keresd a FIX 3% emblémával ellátott hirdetéseket – megfelelhetnek a programnak.</p>
+          <button class="btn" style="background:#fff;color:#0f1f4d;border-color:#fff">Megnézem ▸</button>
+          <div style="margin-top:12px"><a class="link" href="#" style="color:#cfe1ff">Bővebben a FIX 3%-os lakáshitelről</a></div>
+        </div>
+      </aside>
     </div>
   </section>
 
-  <!-- PRÉMIUM PARTNEREK -->
+  <!-- ======= PRÉMIUM PARTNEREK ======= -->
   <section class="section">
     <div class="section-head"><h2>Prémium Partnerek</h2><a class="link" href="#">Összes partner ▸</a></div>
     <div class="grid-list">
-      <article class="card"><img src="https://picsum.photos/seed/agent1/900/600" alt="Ügynök"><div class="p16"><span class="badge">Prémium Partner</span><h3>Koroknai Ildikó</h3><p class="muted">Debrecen • 8 éve a platformon • Jutalék: 1,5–2%</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/agent2/900/600" alt="Ügynök"><div class="p16"><span class="badge">Prémium Partner</span><h3>Madárász Katalin</h3><p class="muted">Veszprém • 6 éve • Jutalék: 2–3,5%</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/agent3/900/600" alt="Ügynök"><div class="p16"><span class="badge">Prémium Partner</span><h3>Boltos Éva</h3><p class="muted">Kecskemét • 5 éve • Jutalék: 2,5–3,8%</p></div></article>
+      <!-- 6 ügynök-kártya -->
+      <article class="card"><img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Koroknai Ildikó</h3><p class="muted">Debrecen • 8 éve • Jutalék: 1,5–2%</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1547425260-76bcadfb4f2c?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Madárász Katalin</h3><p class="muted">Veszprém • 6 éve • Jutalék: 2–3,5%</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1541534401786-2077eed87a72?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Boltos Éva</h3><p class="muted">Kecskemét • 5 éve • Jutalék: 2,5–3,8%</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Kiss Gábor</h3><p class="muted">Budapest • 10 éve • Jutalék: 2,2–3,5%</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Török Nóra</h3><p class="muted">Szeged • 7 éve • Jutalék: 2–3,2%</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Prémium Partner</span><h3>Fekete Dániel</h3><p class="muted">Pécs • 4 éve • Jutalék: 2,8–3,8%</p></div></article>
     </div>
   </section>
 
-  <!-- HÍREK -->
+  <!-- ======= HÍREK ======= -->
   <section class="section">
     <div class="section-head"><h2>Legfrissebb hírek, cikkek</h2><a class="link" href="#">További hírek ▸</a></div>
     <div class="grid-list">
-      <article class="card"><img src="https://picsum.photos/seed/newsA/900/600" alt="Hír"><div class="p16"><span class="badge">Piaci hírek</span><h3>Szokatlan tempóban csökkentek az albérletárak</h3><p class="muted">Gyors összefoglaló grafikonokkal.</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/newsB/900/600" alt="Hír"><div class="p16"><span class="badge">Otthon Start</span><h3>Mit tud a FIX 3% kalkulátor?</h3><p class="muted">Lépésről lépésre útmutató.</p></div></article>
-      <article class="card"><img src="https://picsum.photos/seed/newsC/900/600" alt="Hír"><div class="p16"><span class="badge">Elemzés</span><h3>Panel vs. tégla 2025</h3><p class="muted">Árkülönbségek, lokációs hatások.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1512914890250-932c1f1b0b48?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Piaci hírek</span><h3>Szokatlan tempóban csökkentek az albérletárak</h3><p class="muted">Összefoglaló grafikonokkal.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Otthon Start</span><h3>Mit tud a FIX 3% kalkulátor?</h3><p class="muted">Lépésről lépésre.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1523217582562-09d0def993a6?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Elemzés</span><h3>Panel vs. tégla 2025</h3><p class="muted">Árkülönbségek, lokáció.</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Lakásárindex</span><h3>Gyorsuló lakásdrágulás</h3><p class="muted">Mit jelent ez a vevőknek?</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Elemzés</span><h3>Elektromos autó és ingatlan</h3><p class="muted">Van-e kapcsolat a töltők és az árak közt?</p></div></article>
+      <article class="card"><img src="https://images.unsplash.com/photo-1556228724-4c1b4d4d5f54?q=80&w=1200&auto=format&fit=crop" alt=""><div class="p16"><span class="badge">Kalkulátor</span><h3>Otthon Start tudnivalók</h3><p class="muted">Hogyan számolj okosan?</p></div></article>
     </div>
   </section>
 
-  <!-- APP -->
+  <!-- ======= APP LETÖLTÉS ======= -->
   <section class="app">
     <div class="app-inner">
       <div>
         <h2>Töltsd le a mobilappot!</h2>
-        <p>Vidd magaddal a Tamas‑Ingatlan teljes kínálatát a zsebedben, bárhol, bármikor.</p>
+        <p>Vidd magaddal a teljes kínálatot a zsebedben, és találj otthonra bárhol, bármikor.</p>
         <div class="stores">
-          <a class="badge-store" href="#" aria-label="App Store">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c3 0 9 6 9 9 0 6-4 11-9 11S3 17 3 11C3 8 9 2 12 2z"/></svg>
-            App Store
+          <a class="store" href="#" aria-label="App Store">
+            <span class="logo" aria-hidden="true" style="font-size:20px"></span>
+            <span>Letöltés az App Store-ból</span>
           </a>
-          <a class="badge-store" href="#" aria-label="Google Play">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 2l14 10L3 22V2zm15.5 9.5L20 10l-1.5-1.5-2 1.5 2 1.5z"/></svg>
-            Google Play
+          <a class="store" href="#" aria-label="Google Play">
+            <svg class="logo" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 2l14 10L3 22z"/></svg>
+            <span>Elérhető a Google Playen</span>
           </a>
         </div>
       </div>
@@ -298,30 +345,24 @@
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ======= FOOTER ======= -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="foot-links">
-        <a href="#">Eladó házak</a>
-        <a href="#">Eladó lakások</a>
-        <a href="#">Kiadó lakások</a>
-        <a href="#">Albérletek</a>
-        <a href="#">Lakóparkok</a>
-        <a href="#">Települések</a>
-        <a href="#">Hitel</a>
+        <a href="#">Eladó házak</a><a href="#">Eladó lakások</a><a href="#">Kiadó lakások</a>
+        <a href="#">Albérletek</a><a href="#">Lakóparkok</a><a href="#">Települések</a><a href="#">Hitel</a>
       </div>
-      <p style="margin-top:8px">Kapcsolat: hello@tamas‑ingatlan.hu • © 2025 Tamas‑Ingatlan</p>
+      <p style="margin-top:8px">Kapcsolat: hello@demo.hu • © 2025 Referencia</p>
     </div>
   </footer>
 
-  <!-- DIALOGS: login/register/fix3/submit -->
-  <dialog id="loginDlg"><div class="modal-head"><h3>Bejelentkezés</h3><button class="xbtn" data-x="loginDlg">✕</button></div><div class="modal-body"><div class="grid"><div class="field"><label>E‑mail</label><input type="email" placeholder="email@pelda.hu"></div><div class="field"><label>Jelszó</label><input type="password" placeholder="••••••"></div></div></div><div class="modal-foot"><button class="xbtn" data-x="loginDlg">Mégse</button><button class="btn primary" id="doLogin">Belépés</button></div></dialog>
-  <dialog id="registerDlg"><div class="modal-head"><h3>Regisztráció</h3><button class="xbtn" data-x="registerDlg">✕</button></div><div class="modal-body"><div class="grid"><div class="field"><label>Név</label><input type="text" placeholder="Teljes név"></div><div class="field"><label>E‑mail</label><input type="email" placeholder="email@pelda.hu"></div><div class="field"><label>Jelszó</label><input type="password" placeholder="••••••"></div></div></div><div class="modal-foot"><button class="xbtn" data-x="registerDlg">Mégse</button><button class="btn primary" id="doRegister">Regisztrálok</button></div></dialog>
-  <dialog id="submitDlg"><div class="modal-head"><h3>Hirdetés feladása</h3><button class="xbtn" data-x="submitDlg">✕</button></div><div class="modal-body"><div class="grid"><div class="field"><label>Cím</label><input type="text" placeholder="Világos, erkélyes lakás a XIII. kerületben"></div><div class="field"><label>Helység</label><input type="text" placeholder="város, kerület"></div><div class="field"><label>Ár (millió Ft)</label><input type="number" placeholder="89.9"></div><div class="field"><label>Alapterület (m²)</label><input type="number" placeholder="58"></div><div class="field"><label>Szobaszám</label><input type="number" placeholder="2"></div></div><p class="muted" style="margin-top:8px">Demó: a közzététel érzet, szerver nélküli.</p></div><div class="modal-foot"><button class="xbtn" data-x="submitDlg">Mégse</button><button class="btn primary" id="sendSubmit">Közzététel</button></div></dialog>
-  <dialog id="fixDlg"><div class="modal-head"><h3>FIX 3% – részletes tájékoztató</h3><button class="xbtn" data-x="fixDlg">✕</button></div><div class="modal-body"><p><strong>Mi ez?</strong> Támogatott lakáshitel konstrukció ~3% körüli kamattal. Nem minősül banki előminősítésnek; a megfelelés a pénzintézetnél dől el.</p><ul><li>Első lakást vásárlóknak ideális</li><li>Jövedelem- és életkor‑feltételek</li><li>Ingatlan típus, értékhatár számít</li></ul><img src="https://picsum.photos/seed/fixinfo/960/540" alt="FIX 3% illusztráció" style="width:100%;border-radius:12px;margin-top:8px"></div><div class="modal-foot"><button class="btn primary" data-x="fixDlg">Rendben</button></div></dialog>
+  <!-- ======= DIALOGOK (login/register/submit) ======= -->
+  <dialog id="loginDlg"><div class="modal-head"><h3>Bejelentkezés</h3><button class="xbtn" data-x="loginDlg">✕</button></div><div class="modal-body"><div class="adv-grid"><input placeholder="E-mail"><input type="password" placeholder="Jelszó"></div></div><div class="modal-foot"><button class="xbtn" data-x="loginDlg">Mégse</button><button class="btn primary" id="doLogin">Belépés</button></div></dialog>
+  <dialog id="registerDlg"><div class="modal-head"><h3>Regisztráció</h3><button class="xbtn" data-x="registerDlg">✕</button></div><div class="modal-body"><div class="adv-grid"><input placeholder="Név"><input placeholder="E-mail"><input type="password" placeholder="Jelszó"></div></div><div class="modal-foot"><button class="xbtn" data-x="registerDlg">Mégse</button><button class="btn primary" id="doRegister">Regisztrálok</button></div></dialog>
+  <dialog id="submitDlg"><div class="modal-head"><h3>Hirdetés feladása</h3><button class="xbtn" data-x="submitDlg">✕</button></div><div class="modal-body"><div class="adv-grid"><input placeholder="Cím"><input placeholder="Helység"><input placeholder="Ár (millió Ft)"><input placeholder="Alapterület (m²)"><input placeholder="Szobaszám"></div><p class="muted" style="margin-top:8px">Demó: helyi előnézet, nincs szerver.</p></div><div class="modal-foot"><button class="xbtn" data-x="submitDlg">Mégse</button><button class="btn primary" id="sendSubmit">Közzététel</button></div></dialog>
 
   <script>
-    // Header mega menus (desktop)
+    // ======= Mega menük =======
     document.querySelectorAll('.mega-btn').forEach(btn=>{
       const id=btn.getAttribute('data-mega');
       const el=document.getElementById(id);
@@ -333,49 +374,38 @@
     });
     document.addEventListener('click',()=>document.querySelectorAll('.mega').forEach(m=>m.classList.remove('show')));
 
-    // Mobile drawer and open mega copies
+    // ======= Drawer =======
     const drawer=document.getElementById('drawer');
     const scrim=document.getElementById('scrim');
     document.getElementById('openMenu').onclick=()=>{drawer.classList.add('open');scrim.classList.add('show');};
-    document.getElementById('closeMenu').onclick=()=>{drawer.classList.remove('open');scrim.classList.remove('show');};
+    document.getElementById('closeMenu')?.addEventListener('click',()=>{drawer.classList.remove('open');scrim.classList.remove('show');});
     scrim.onclick=()=>{drawer.classList.remove('open');scrim.classList.remove('show');};
-    document.querySelectorAll('.drawer-nav [data-open]').forEach(b=>{
-      b.onclick=()=>{
-        drawer.classList.remove('open');scrim.classList.remove('show');
-        const id=b.getAttribute('data-open');
-        document.getElementById(id).classList.add('show');
-      };
-    });
 
-    // Banner close
-    const banner=document.getElementById('banner');
-    document.getElementById('closeBanner').onclick=()=>banner.remove();
+    // ======= Banner close =======
+    document.getElementById('closeBanner').onclick=()=>document.getElementById('banner').remove();
 
-    // Tabs visual
-    document.getElementById('tabElado').onclick=()=>{tab('tabElado','tabKiado')};
-    document.getElementById('tabKiado').onclick=()=>{tab('tabKiado','tabElado')};
+    // ======= Tabs vizuál =======
     function tab(on,off){document.getElementById(on).classList.add('active');document.getElementById(off).classList.remove('active');}
+    document.getElementById('tabElado').onclick=()=>tab('tabElado','tabKiado');
+    document.getElementById('tabKiado').onclick=()=>tab('tabKiado','tabElado');
 
-    // Advanced filters
+    // ======= Részletes kereső =======
     const adv=document.getElementById('advanced');
     document.getElementById('toggleAdvanced').onclick=()=>adv.classList.toggle('show');
 
-    // Dialog wiring
+    // ======= Keresés (demó) =======
+    document.getElementById('doSearch').onclick=()=>alert('Keresés futtatva (demó)');
+
+    // ======= Dialogok =======
     function openDlg(id){document.getElementById(id).showModal();}
     function closeDlg(id){document.getElementById(id).close();}
-    document.getElementById('navLogin').onclick=(e)=>{e.preventDefault();openDlg('loginDlg')}
-    document.getElementById('navRegister').onclick=(e)=>{e.preventDefault();openDlg('registerDlg')}
-    document.getElementById('openSubmit').onclick=(e)=>{e.preventDefault();openDlg('submitDlg')}
-    document.getElementById('mLogin').onclick=(e)=>{e.preventDefault();openDlg('loginDlg')}
-    document.getElementById('mRegister').onclick=(e)=>{e.preventDefault();openDlg('registerDlg')}
-    document.getElementById('mSubmit').onclick=(e)=>{e.preventDefault();openDlg('submitDlg')}
+    document.getElementById('navLogin').onclick=(e)=>{e.preventDefault();openDlg('loginDlg')};
+    document.getElementById('navRegister').onclick=(e)=>{e.preventDefault();openDlg('registerDlg')};
+    document.getElementById('openSubmit').onclick=(e)=>{e.preventDefault();openDlg('submitDlg')};
     document.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>closeDlg(b.getAttribute('data-x')));
-
-    // Demo actions
-    document.getElementById('doLogin').onclick=()=>{closeDlg('loginDlg');alert('Belépve (demó)');}
-    document.getElementById('doRegister').onclick=()=>{closeDlg('registerDlg');alert('Regisztráció sikeres (demó)');}
-    document.getElementById('sendSubmit').onclick=()=>{closeDlg('submitDlg');alert('Hirdetés feladva (demó)');}
-    document.getElementById('searchForm').addEventListener('submit',(e)=>{e.preventDefault();alert('Keresés futtatva (demó)');});
+    document.getElementById('doLogin').onclick=()=>{closeDlg('loginDlg');alert('Belépve (demó)')};
+    document.getElementById('doRegister').onclick=()=>{closeDlg('registerDlg');alert('Regisztráció sikeres (demó)')};
+    document.getElementById('sendSubmit').onclick=()=>{closeDlg('submitDlg');alert('Hirdetés feladva (demó)')};
   </script>
 </body>
 </html>
