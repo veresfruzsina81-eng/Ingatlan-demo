@@ -50,34 +50,16 @@
     </div>
   </header>
 
-  <!-- Hero + Kereső -->
+  <!-- Hero + Kereső (Hirdetés blokk MÉRETE NEM VÁLTOZIK) -->
   <section class="hero" id="kereso">
     <div class="container">
       <p class="eyebrow" data-i18n="ad.label">Hirdetés</p>
 
-      <!-- Illusztrált hirdetés (beágyazott kép) -->
       <div class="ad-banner" role="img" aria-label="Ingatlan hirdetés" style="position:relative;overflow:hidden;border-radius:12px">
-        <img loading="lazy" decoding="async" alt="Modern lakópark illusztráció"
-          style="width:100%;height:280px;object-fit:cover;display:block"
-          src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 560'>
-            <defs>
-              <linearGradient id='g' x1='0' y1='0' x2='1' y2='1'>
-                <stop offset='0' stop-color='%230b5fff'/><stop offset='1' stop-color='%23364ac8'/>
-              </linearGradient>
-            </defs>
-            <rect width='1200' height='560' fill='url(%23g)'/>
-            <g fill='%23ffffff' opacity='0.92'>
-              <rect x='80' y='300' width='140' height='160' rx='8'/>
-              <rect x='250' y='260' width='160' height='200' rx='8'/>
-              <rect x='430' y='230' width='170' height='230' rx='8'/>
-              <rect x='620' y='260' width='150' height='200' rx='8'/>
-              <rect x='790' y='210' width='210' height='250' rx='8'/>
-              <rect x='1030' y='320' width='120' height='140' rx='8'/>
-            </g>
-            <circle cx='1020' cy='120' r='40' fill='%23ffcc66'/>
-            <text x='80' y='120' font-size='54' font-family='Inter, Arial' fill='white' opacity='0.95'>Találd meg az otthonod</text>
-          </svg>"/>
+        <!-- kicsi banner marad 180px -->
+        <img loading="lazy" decoding="async" alt="Modern lakópark – hirdetés"
+             style="width:100%;height:180px;object-fit:cover;display:block"
+             src="https://picsum.photos/seed/ingatlan-ad/1200/360"/>
       </div>
 
       <h1 class="hero__title" data-i18n="hero.title">Mindenhol jó, de a legjobb itt vár rád.</h1>
@@ -147,21 +129,11 @@
     </div>
   </section>
 
-  <!-- Értékbecslő CTA -->
+  <!-- Értékbecslő CTA (meglévő tartalom) -->
   <section class="cta">
     <div class="container cta__inner">
       <div class="cta__illu" aria-hidden="true" style="position:relative;overflow:hidden">
-        <!-- Mini-ház illusztráció beágyazva -->
-        <img loading="lazy" decoding="async" alt=""
-             style="width:120px;height:auto;position:absolute;left:12px;bottom:8px;opacity:.95"
-             src="data:image/svg+xml;utf8,<?xml version='1.0' encoding='UTF-8'?>
-             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 160 120'>
-               <rect x='24' y='56' width='112' height='52' rx='8' fill='%23ffffff' />
-               <path d='M24 56 L80 18 L136 56 Z' fill='%23ff6a3d'/>
-               <rect x='44' y='74' width='28' height='34' rx='4' fill='%230b5fff'/>
-               <rect x='88' y='74' width='36' height='22' rx='4' fill='%23111c47'/>
-             </svg>">
-        <!-- meglévő dísz-SVG marad -->
+        <!-- meglévő dísz grafika -->
         <svg viewBox="0 0 160 110" aria-hidden="true" style="position:absolute;inset:0;opacity:.35">
           <rect x="18" y="18" width="124" height="20" rx="10" fill="#1f2b6c"/>
           <rect x="18" y="48" width="90" height="14" rx="7" fill="#0b5fff"/>
@@ -175,166 +147,49 @@
       </div>
     </div>
   </section>
-
-  <!-- Lakópark ajánlók – magyar nevekkel -->
+  <!-- Lakópark ajánlók — csak képek lettek hozzáadva -->
   <section class="section">
     <div class="container">
       <h2 data-i18n="parks.title">Lakóparkba költöznél?</h2>
       <div class="grid cards" id="estateGrid">
-        <!-- 1 -->
         <article class="card">
           <div class="card__media media--warm" style="position:relative;overflow:hidden">
-            <img alt="Termál Zugló Lakópark látvány"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><defs><linearGradient id='a' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%23ffb86b'/><stop offset='1' stop-color='%23ff6a3d'/></linearGradient></defs><rect width='400' height='280' fill='url(%23a)'/><g fill='%23fff' opacity='.95'><rect x='40' y='150' width='70' height='90' rx='6'/><rect x='130' y='130' width='85' height='110' rx='6'/><rect x='230' y='110' width='90' height='130' rx='6'/><rect x='330' y='170' width='50' height='70' rx='6'/></g></svg>">
+            <img alt="Termál Zugló Lakópark" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-1/800/480">
             10–90% fizetési ütemezés
           </div>
-          <div class="card__body">
-            <h3>Termál Zugló Lakópark</h3>
-            <p>Kedvezményes lakások csendes, zöld környezetben. Befektetésnek is kiváló.</p>
-          </div>
+          <div class="card__body"><h3>Termál Zugló Lakópark</h3><p>Kedvezményes lakások csendes, zöld környezetben. Befektetésnek is kiváló.</p></div>
         </article>
 
-        <!-- 2 -->
         <article class="card">
           <div class="card__media media--forest" style="position:relative;overflow:hidden">
-            <img alt="Harmatliget lakópark – természetközeli épületek"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%232a9d8f'/><circle cx='70' cy='210' r='28' fill='%23e9f5ef'/><rect x='220' y='120' width='120' height='130' rx='8' fill='%23e9f5ef'/><rect x='255' y='160' width='50' height='40' fill='%232a9d8f'/></svg>">
+            <img alt="Harmatliget lakópark" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-2/800/480">
             Prémium kivitel
           </div>
-          <div class="card__body">
-            <h3>Harmatliget</h3>
-            <p>Természetközeli otthonok a Madárhegy szívében, 11. kerület.</p>
-          </div>
+          <div class="card__body"><h3>Harmatliget</h3><p>Természetközeli otthonok a Madárhegy szívében, 11. kerület.</p></div>
         </article>
 
-        <!-- 3 -->
         <article class="card">
           <div class="card__media media--navy" style="position:relative;overflow:hidden">
-            <img alt="Marina Város – Duna-parti lakások"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%23111c47'/><rect x='80' y='100' width='60' height='150' fill='%23ffffff'/><rect x='160' y='80' width='60' height='170' fill='%23ffffff'/><rect x='240' y='60' width='60' height='190' fill='%23ffffff'/><rect x='20' y='250' width='360' height='8' fill='%239fb3ff'/></svg>">
+            <img alt="Marina Város – Duna-part" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-3/800/480">
             Duna-part, örök panoráma
           </div>
-          <div class="card__body">
-            <h3>Marina Város</h3>
-            <p>Új ütem, rugalmas fizetés, autómentes zöld környezet.</p>
-          </div>
+          <div class="card__body"><h3>Marina Város</h3><p>Új ütem, rugalmas fizetés, autómentes zöld környezet.</p></div>
         </article>
 
-        <!-- 4 -->
-        <article class="card">
-          <div class="card__media media--aqua" style="position:relative;overflow:hidden">
-            <img alt="Vízpart Residence – wellness és fitness"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%2300b4d8'/><circle cx='120' cy='200' r='22' fill='%23eafcff'/><rect x='220' y='180' width='130' height='20' rx='10' fill='%23eafcff'/><rect x='240' y='210' width='90' height='16' rx='8' fill='%23eafcff'/></svg>">
-            Wellness & fitness
-          </div>
-          <div class="card__body">
-            <h3>Vízpart Residence</h3>
-            <p>Prémium burkolatok, tágas parkolók, IV. negyedéves átadás.</p>
-          </div>
-        </article>
-
-        <!-- 5 -->
-        <article class="card">
-          <div class="card__media media--purple" style="position:relative;overflow:hidden">
-            <img alt="Revital Park – bevezető árak"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%236b5bd2'/><path d='M70 190 h120 l40 40 h-120 z' fill='%23ffffff'/></svg>">
-            Bevezető árak
-          </div>
-          <div class="card__body">
-            <h3>Revital Park</h3>
-            <p>A+ energia, zöld környezet, Újbuda szívében.</p>
-          </div>
-        </article>
-
-        <!-- 6 -->
-        <article class="card">
-          <div class="card__media media--sand" style="position:relative;overflow:hidden">
-            <img alt="Jázmin Klubház – erkélyes lakások"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%23e9c46a'/><rect x='130' y='120' width='140' height='110' fill='%23ffffff'/><rect x='130' y='170' width='140' height='12' fill='%23111c47'/><rect x='140' y='190' width='120' height='12' fill='%23111c47'/></svg>">
-            Erkélyes lakások
-          </div>
-          <div class="card__body">
-            <h3>Jázmin Klubház</h3>
-            <p>Csendes, bensőséges közeg a XIII. kerületben.</p>
-          </div>
-        </article>
-
-        <!-- 7 -->
-        <article class="card">
-          <div class="card__media media--teal" style="position:relative;overflow:hidden">
-            <img alt="Parkváros – AA+ energetika"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%230a9396'/><rect x='60' y='140' width='280' height='90' rx='8' fill='%23ffffff'/><rect x='95' y='170' width='40' height='40' fill='%230a9396'/></svg>">
-            AA+ energia
-          </div>
-          <div class="card__body"><h3>Parkváros</h3><p>Fiatalos, modern otthonok, kiváló közlekedéssel.</p></div>
-        </article>
-
-        <!-- 8 -->
-        <article class="card">
-          <div class="card__media media--sun" style="position:relative;overflow:hidden">
-            <img alt="Balatonliget – vízpart közeli apartmanok"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%23f4a261'/><circle cx='90' cy='90' r='28' fill='%23ffe8b6'/><rect x='170' y='200' width='200' height='14' fill='%23ffe8b6'/></svg>">
-            Balaton 100 m
-          </div>
-          <div class="card__body"><h3>Balatonliget</h3><p>Vízpart közeli apartmanok nagy teraszokkal.</p></div>
-        </article>
-
-        <!-- 9 -->
-        <article class="card">
-          <div class="card__media media--stone" style="position:relative;overflow:hidden">
-            <img alt="Epres Liget – Debrecen"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%23979dac'/><rect x='60' y='200' width='200' height='12' rx='6' fill='%23ffffff'/></svg>">
-            Debrecen
-          </div>
-          <div class="card__body"><h3>Epres Liget</h3><p>Családbarát környék, kiváló elhelyezkedés.</p></div>
-        </article>
-
-        <!-- 10 -->
-        <article class="card">
-          <div class="card__media media--leaf" style="position:relative;overflow:hidden">
-            <img alt="Fásliget – kertvárosi lakópark"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%234caf50'/><rect x='160' y='100' width='80' height='18' rx='9' fill='%23ffffff'/></svg>">
-            Kertváros
-          </div>
-          <div class="card__body"><h3>Fásliget</h3><p>Parkosított belső udvar, közösségi terek.</p></div>
-        </article>
-
-        <!-- 11 -->
-        <article class="card">
-          <div class="card__media media--rust" style="position:relative;overflow:hidden">
-            <img alt="Novus Liget – belvárosi prémium otthonok"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%23a25c3c'/><rect x='80' y='90' width='200' height='20' rx='10' fill='%23ffffff'/></svg>">
-            Belváros
-          </div>
-          <div class="card__body"><h3>Novus Liget</h3><p>Városi életérzés prémium szolgáltatásokkal.</p></div>
-        </article>
-
-        <!-- 12 -->
-        <article class="card">
-          <div class="card__media media--sky" style="position:relative;overflow:hidden">
-            <img alt="Folyampart Heights – folyóparti toronyházak"
-              loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover"
-              src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 280'><rect width='400' height='280' fill='%230b5fff'/><rect x='120' y='80' width='40' height='160' fill='%23ffffff'/><rect x='180' y='100' width='40' height='140' fill='%23ffffff'/><rect x='240' y='90' width='40' height='150' fill='%23ffffff'/></svg>">
-            Új ütem
-          </div>
-          <div class="card__body"><h3>Folyampart Heights</h3><p>Folyóparti sétány, közösségi tetőterasz.</p></div>
-        </article>
+        <article class="card"><div class="card__media media--aqua"><img alt="Vízpart Residence" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-4/800/480">Wellness & fitness</div><div class="card__body"><h3>Vízpart Residence</h3><p>Prémium burkolatok, tágas parkolók, IV. negyedéves átadás.</p></div></article>
+        <article class="card"><div class="card__media media--purple"><img alt="Revital Park" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-5/800/480">Bevezető árak</div><div class="card__body"><h3>Revital Park</h3><p>A+ energia, zöld környezet, Újbuda szívében.</p></div></article>
+        <article class="card"><div class="card__media media--sand"><img alt="Jázmin Klubház" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-6/800/480">Erkélyes lakások</div><div class="card__body"><h3>Jázmin Klubház</h3><p>Csendes, bensőséges közeg a XIII. kerületben.</p></div></article>
+        <article class="card"><div class="card__media media--teal"><img alt="Parkváros" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-7/800/480">AA+ energia</div><div class="card__body"><h3>Parkváros</h3><p>Fiatalos, modern otthonok, kiváló közlekedéssel.</p></div></article>
+        <article class="card"><div class="card__media media--sun"><img alt="Balatonliget" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-8/800/480">Balaton 100 m</div><div class="card__body"><h3>Balatonliget</h3><p>Vízpart közeli apartmanok nagy teraszokkal.</p></div></article>
+        <article class="card"><div class="card__media media--stone"><img alt="Epres Liget – Debrecen" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-9/800/480">Debrecen</div><div class="card__body"><h3>Epres Liget</h3><p>Családbarát környék, kiváló elhelyezkedés.</p></div></article>
+        <article class="card"><div class="card__media media--leaf"><img alt="Fásliget – Kertváros" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-10/800/480">Kertváros</div><div class="card__body"><h3>Fásliget</h3><p>Parkosított belső udvar, közösségi terek.</p></div></article>
+        <article class="card"><div class="card__media media--rust"><img alt="Novus Liget – Belváros" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-11/800/480">Belváros</div><div class="card__body"><h3>Novus Liget</h3><p>Városi életérzés prémium szolgáltatásokkal.</p></div></article>
+        <article class="card"><div class="card__media media--sky"><img alt="Folyampart Heights" loading="lazy" decoding="async" style="width:100%;height:140px;object-fit:cover" src="https://picsum.photos/seed/park-12/800/480">Új ütem</div><div class="card__body"><h3>Folyampart Heights</h3><p>Folyóparti sétány, közösségi tetőterasz.</p></div></article>
       </div>
     </div>
   </section>
 
-  <!-- Prémium partnerek – üzletember illusztrációk -->
+  <!-- Prémium partnerek — fotós portrék -->
   <section class="section">
     <div class="container">
       <div class="section__head">
@@ -345,78 +200,12 @@
       <div class="carousel" aria-roledescription="carousel">
         <button class="carousel__nav prev" aria-label="Előző">‹</button>
         <div class="carousel__track" id="partnerTrack" tabindex="0" role="group" aria-label="Partnerek listája">
-          <!-- 6 kártya – beágyazott "üzletember" avatarok -->
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%23364ac8'/><circle cx='60' cy='42' r='18' fill='%23fff'/><rect x='30' y='70' width='60' height='30' rx='8' fill='%23fff'/><path d='M60 74 l10 14 h-20 z' fill='%23364ac8'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Pálfi Edina</h3>
-            <p class="muted">Vonyarcvashegy, Hévíz, Keszthely</p>
-            <ul class="agent__meta"><li>15 éve a platformon</li><li><strong>Jutalék: 3,5–4%</strong></li></ul>
-          </article>
-
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%236b5bd2'/><circle cx='60' cy='42' r='18' fill='%23fff'/><rect x='30' y='70' width='60' height='30' rx='8' fill='%23fff'/><rect x='50' y='60' width='20' height='8' rx='4' fill='%236b5bd2'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Dr. Osztrogonácz András</h3>
-            <p class="muted">Budapest</p>
-            <ul class="agent__meta"><li>4 éve a platformon</li><li><strong>Jutalék: 4,4%</strong></li></ul>
-          </article>
-
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%234253b6'/><circle cx='60' cy='42' r='18' fill='%23fff'/><circle cx='60' cy='76' r='8' fill='%234253b6'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Galavics Andrea</h3>
-            <p class="muted">Sopron, Ágfalva</p>
-            <ul class="agent__meta"><li>12 éve a platformon</li><li><strong>Jutalék: 1,5–3%</strong></li></ul>
-          </article>
-
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%23111c47'/><circle cx='60' cy='42' r='18' fill='%23fff'/><rect x='34' y='76' width='52' height='18' rx='9' fill='%23111c47'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Szabó Béla</h3>
-            <p class="muted">XI., XII., XIII., XIV. kerület</p>
-            <ul class="agent__meta"><li>6 éve a platformon</li><li><strong>Jutalék: 3,8–6,4%</strong></li></ul>
-          </article>
-
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%23b5179e'/><circle cx='60' cy='42' r='18' fill='%23fff'/><rect x='48' y='84' width='24' height='12' rx='6' fill='%23fff'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Kiss Dóra</h3>
-            <p class="muted">Győr, Mosonmagyaróvár</p>
-            <ul class="agent__meta"><li>8 éve a platformon</li><li><strong>Jutalék: 2,9–4,9%</strong></li></ul>
-          </article>
-
-          <article class="agent">
-            <div class="agent__media" aria-hidden="true">
-              <img width="88" height="88" style="width:88px;height:88px;object-fit:cover;border-radius:12px" alt=""
-                loading="lazy" decoding="async"
-                src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><rect width='120' height='120' rx='16' fill='%23fb8500'/><circle cx='60' cy='42' r='18' fill='%23fff'/><rect x='46' y='84' width='28' height='12' rx='6' fill='%23fff'/></svg>">
-            </div>
-            <div class="agent__ribbon">Prémium Partner</div>
-            <h3>Nagy Ferenc</h3>
-            <p class="muted">Pécs</p>
-            <ul class="agent__meta"><li>10 éve a platformon</li><li><strong>Jutalék: 3–5%</strong></li></ul>
-          </article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=12" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Pálfi Edina</h3><p class="muted">Vonyarcvashegy, Hévíz, Keszthely</p><ul class="agent__meta"><li>15 éve a platformon</li><li><strong>Jutalék: 3,5–4%</strong></li></ul></article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=32" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Dr. Osztrogonácz András</h3><p class="muted">Budapest</p><ul class="agent__meta"><li>4 éve a platformon</li><li><strong>Jutalék: 4,4%</strong></li></ul></article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=45" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Galavics Andrea</h3><p class="muted">Sopron, Ágfalva</p><ul class="agent__meta"><li>12 éve a platformon</li><li><strong>Jutalék: 1,5–3%</strong></li></ul></article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=16" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Szabó Béla</h3><p class="muted">XI., XII., XIII., XIV. kerület</p><ul class="agent__meta"><li>6 éve a platformon</li><li><strong>Jutalék: 3,8–6,4%</strong></li></ul></article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=47" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Kiss Dóra</h3><p class="muted">Győr, Mosonmagyaróvár</p><ul class="agent__meta"><li>8 éve a platformon</li><li><strong>Jutalék: 2,9–4,9%</strong></li></ul></article>
+          <article class="agent"><div class="agent__media"><img src="https://i.pravatar.cc/88?img=5" alt="Partner portré" width="88" height="88" loading="lazy" decoding="async" style="border-radius:12px;object-fit:cover"></div><div class="agent__ribbon">Prémium Partner</div><h3>Nagy Ferenc</h3><p class="muted">Pécs</p><ul class="agent__meta"><li>10 éve a platformon</li><li><strong>Jutalék: 3–5%</strong></li></ul></article>
         </div>
         <button class="carousel__nav next" aria-label="Következő">›</button>
       </div>
@@ -426,7 +215,8 @@
       </div>
     </div>
   </section>
-  <!-- Hírek / cikkek -->
+
+  <!-- Hírek / cikkek — oda illő ingatlan képekkel -->
   <section class="section" id="tips">
     <div class="container">
       <div class="section__head">
@@ -442,18 +232,7 @@
       <div class="news">
         <article class="news__featured">
           <div class="news__img img--boxes" style="position:relative;overflow:hidden">
-            <!-- Kép: nem kell letölteni -->
-            <img
-              src="https://source.unsplash.com/1200x720/?apartment,real-estate,city"
-              alt="Albérletárak és városi lakások"
-              loading="lazy" decoding="async"
-              style="width:100%;height:180px;object-fit:cover;">
-            <svg viewBox="0 0 300 180" aria-hidden="true" style="position:absolute;inset:0;opacity:.25;pointer-events:none">
-              <rect x="36" y="120" width="36" height="32" fill="#fff"/>
-              <rect x="80" y="96"  width="36" height="56" fill="#fff"/>
-              <rect x="124" y="80" width="36" height="72" fill="#fff"/>
-              <path d="M200 130 L230 110 L260 130 L260 160 L200 160 Z" fill="#fff"/>
-            </svg>
+            <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1200&auto=format&fit=crop" alt="Albérletárak és városi lakások" loading="lazy" decoding="async" style="width:100%;height:180px;object-fit:cover;">
             Piaci hírek
           </div>
           <h3>Szokatlan tempóban csökkentek az albérletárak szeptemberben</h3>
@@ -472,31 +251,14 @@
         <aside class="news__side">
           <article class="side-card">
             <div class="side-card__img img--portrait" style="position:relative;overflow:hidden">
-              <img
-                src="https://source.unsplash.com/600x360/?family,house"
-                alt="Otthon Start – családi ház"
-                loading="lazy" decoding="async"
-                style="width:100%;height:120px;object-fit:cover;">
-              <svg viewBox="0 0 220 120" aria-hidden="true" style="position:absolute;inset:0;opacity:.25;pointer-events:none">
-                <rect x="24" y="26" width="140" height="16" rx="8" fill="#fff"/>
-                <path d="M40 90 L70 70 L100 90 L100 110 L40 110 Z" fill="#fff"/>
-              </svg>
+              <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop" alt="Otthon Start – családi ház" loading="lazy" decoding="async" style="width:100%;height:120px;object-fit:cover;">
               Otthon start
             </div>
             <h4>„Az Otthon Start élénkíti a keresletet, de a kínálatnak is segítség kell.”</h4>
           </article>
           <article class="side-card">
             <div class="side-card__img img--calc" style="position:relative;overflow:hidden">
-              <img
-                src="https://source.unsplash.com/600x360/?calculator,real-estate"
-                alt="Lakáshitel kalkulátor és lakópark"
-                loading="lazy" decoding="async"
-                style="width:100%;height:120px;object-fit:cover;">
-              <svg viewBox="0 0 220 120" aria-hidden="true" style="position:absolute;inset:0;opacity:.25;pointer-events:none">
-                <rect x="30" y="30" width="40" height="50" rx="6" fill="#fff"/>
-                <rect x="80" y="30" width="100" height="20" rx="10" fill="#fff"/>
-                <rect x="80" y="56" width="80" height="12" rx="6" fill="#fff"/>
-              </svg>
+              <img src="https://images.unsplash.com/photo-1560518883-3c1a0e62f36a?q=80&w=800&auto=format&fit=crop" alt="Lakáshitel kalkulátor és lakópark" loading="lazy" decoding="async" style="width:100%;height:120px;object-fit:cover;">
               Otthon start
             </div>
             <h4>2026-tól lendületet kaphatnak az új építésű lakáseladások</h4>
@@ -505,16 +267,14 @@
       </div>
     </div>
   </section>
-
-  <!-- App promó -->
+  <!-- App promó — telefon + App Store / Google Play badge-ek -->
   <section class="app-promo">
     <div class="container app-promo__inner">
-      <!-- Telefon illusztráció maradhat SVG -->
       <div class="phone-mock" aria-hidden="true" style="position:relative;display:grid;place-items:center;overflow:hidden">
         <svg viewBox="0 0 240 440" width="160" aria-hidden="true">
           <rect x="30" y="10" width="180" height="420" rx="28" fill="#0e1430"/>
           <rect x="38" y="50" width="164" height="332" rx="18" fill="#111c47"/>
-          <text x="120" y="220" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="800">DEMO WEBSHOP</text>
+          <text x="120" y="220" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="800">INGATLAN APP</text>
           <rect x="95" y="398" width="50" height="6" rx="3" fill="#9fb3ff"/>
           <circle cx="120" cy="28" r="4" fill="#9fb3ff"/>
         </svg>
@@ -524,17 +284,22 @@
         <p data-i18n="app.desc">Eladó vagy kiadó ingatlant keresel? Vidd magaddal a teljes kínálatot, bárhol, bármikor.</p>
         <div class="store-buttons">
           <a class="store store--apple" href="#" role="button" aria-label="App Store">
-            <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M16.365 1.43c.09 1.1-.4 2.18-1.08 2.99-.75.89-1.98 1.58-3.18 1.49-.1-1.08.44-2.2 1.12-2.99.76-.88 2.1-1.58 3.14-1.49zM20.84 17.3c-.61 1.4-.9 2.02-1.7 3.24-1.1 1.7-2.65 3.84-4.6 3.88-1.09.02-1.84-.36-2.93-.36-1.1 0-1.9.36-2.96.38-1.97.04-3.48-1.85-4.58-3.55-3.14-4.79-3.47-10.42-1.54-13.4 1.37-2.17 3.53-3.44 5.56-3.44 2.06 0 3.35 1.18 5.05 1.18 1.67 0 2.69-1.18 5.07-1.18.92 0 3.19.25 4.66 2.39-4.07 2.22-3.4 7.99-.03 10.87z" fill="#fff"/></svg>
-            <span>App Store</span>
+            <svg width="120" height="40" viewBox="0 0 120 40" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="119" height="39" rx="8" fill="#000"/><rect x="0.5" y="0.5" width="119" height="39" rx="8" fill="none" stroke="#333"/>
+              <g transform="translate(10,8)">
+                <path d="M16.365 1.43c.09 1.1-.4 2.18-1.08 2.99-.75.89-1.98 1.58-3.18 1.49-.1-1.08.44-2.2 1.12-2.99.76-.88 2.1-1.58 3.14-1.49zM20.84 17.3c-.61 1.4-.9 2.02-1.7 3.24-1.1 1.7-2.65 3.84-4.6 3.88-1.09.02-1.84-.36-2.93-.36-1.1 0-1.9.36-2.96.38-1.97.04-3.48-1.85-4.58-3.55-3.14-4.79-3.47-10.42-1.54-13.4 1.37-2.17 3.53-3.44 5.56-3.44 2.06 0 3.35 1.18 5.05 1.18 1.67 0 2.69-1.18 5.07-1.18.92 0 3.19.25 4.66 2.39-4.07 2.22-3.4 7.99-.03 10.87z" fill="#fff"/>
+                <text x="28" y="16" font-size="10" fill="#fff" font-family="Inter,Arial" font-weight="700">App Store</text>
+              </g>
+            </svg>
           </a>
           <a class="store store--google" href="#" role="button" aria-label="Google Play">
-            <svg width="20" height="20" viewBox="0 0 512 512" aria-hidden="true">
-              <path d="M325.3 234.3L88.4 1.6c-4.7 1.8-8.4 6.2-8.4 12.4v484c0 6.2 3.7 10.6 8.4 12.5l236.9-232.7-28.1-30.5z" fill="#32BBFF"/>
-              <path d="M423.7 167.5L356 125.6l-60.7 64.2 30 33 98.4-55.3z" fill="#00A6F0"/>
-              <path d="M356 386.4l67.7-42-98.4-55.3-30 33 60.7 64.3z" fill="#00A6F0"/>
-              <path d="M453.6 148.7c12.4 7 12.4 25.4 0 32.5L325.3 256 453.6 330.8c12.4 7 12.4 25.4 0 32.4l-47.6 27.1L266 271.5l60.7-64.3 79.3-45.8 47.6-12.7z" fill="#32BBFF"/>
+            <svg width="130" height="40" viewBox="0 0 130 40" aria-hidden="true">
+              <rect x="0.5" y="0.5" width="129" height="39" rx="8" fill="#000"/><rect x="0.5" y="0.5" width="129" height="39" rx="8" fill="none" stroke="#333"/>
+              <g transform="translate(10,9)">
+                <path d="M22 10L10 0v20l12-10z" fill="#34A853"/><path d="M22 10L14 5 10 0l12 10z" fill="#4285F4"/><path d="M22 10L14 15 10 20l12-10z" fill="#FBBC05"/><path d="M22 10l8 5-8 5V10z" fill="#EA4335"/>
+                <text x="32" y="12" font-size="10" fill="#fff" font-family="Inter,Arial" font-weight="700">Google Play</text>
+              </g>
             </svg>
-            <span>Google Play</span>
           </a>
         </div>
       </div>
@@ -644,14 +409,9 @@
     </div>
   </footer>
 
-  <!-- Modálok – modern háttér -->
+  <!-- MODÁLOK (modern Auth + a többi érintetlen) -->
   <div class="modal" id="authModal" aria-hidden="true" role="dialog" aria-labelledby="authTitle">
     <div class="modal__dialog" style="position:relative;overflow:hidden">
-      <svg aria-hidden="true" viewBox="0 0 600 300" style="position:absolute;right:-60px;top:-40px;opacity:.12">
-        <circle cx="360" cy="140" r="120" fill="#6b5bd2"/>
-        <rect x="60" y="220" width="160" height="16" rx="8" fill="#0b5fff"/>
-      </svg>
-
       <button class="modal__close" data-close aria-label="Bezárás">×</button>
       <h3 id="authTitle" data-i18n="auth.title">Bejelentkezés / Regisztráció</h3>
       <div class="tabs small" role="tablist" aria-label="Bejelentkezés és regisztráció fülek">
@@ -662,6 +422,7 @@
         <form class="stack is-active" id="pane-login" role="tabpanel" aria-labelledby="tab-login">
           <input placeholder="Email" type="email" required>
           <input placeholder="Jelszó" type="password" required>
+          <label style="display:flex;gap:8px;align-items:center"><input type="checkbox"> Emlékezz rám</label>
           <button class="btn btn--primary" type="submit" data-i18n="auth.loginBtn">Belépés</button>
         </form>
         <form class="stack" id="pane-signup" role="tabpanel" aria-labelledby="tab-signup" aria-hidden="true">
@@ -674,6 +435,7 @@
     </div>
   </div>
 
+  <!-- A többi, eredetileg nálad lévő modál: postModal, advancedModal, fixInfoModal, valuatorModal – változatlanul hagyva -->
   <div class="modal" id="postModal" aria-hidden="true" role="dialog" aria-labelledby="postTitle">
     <div class="modal__dialog">
       <button class="modal__close" data-close aria-label="Bezárás">×</button>
@@ -734,104 +496,56 @@
   </div>
 
   <script src="app.js"></script>
-<script>
-(function () {
-  // 1) FEJLÉC ALATTI HIRDETÉS (HERO)
-  const hero = document.querySelector('.ad-banner');
-  if (hero) {
-    hero.style.position = 'relative';
-    hero.style.overflow = 'hidden';
-    hero.innerHTML = `
-      <img src="https://picsum.photos/seed/realestate-hero/1600/520"
-           alt="Modern lakópark – hirdetés"
-           style="width:100%;height:280px;object-fit:cover;display:block;border-radius:var(--radius,12px);" loading="lazy" decoding="async">
-      ${hero.innerHTML}
-    `;
-  }
+  <script>
+    // Mobil menü gomb
+    const navToggle = document.getElementById('navToggle');
+    if (navToggle) {
+      navToggle.addEventListener('click', () => {
+        const list = document.getElementById('nav-list');
+        const exp = navToggle.getAttribute('aria-expanded') === 'true';
+        navToggle.setAttribute('aria-expanded', String(!exp));
+        list.classList.toggle('is-open');
+      });
+    }
 
-  // 2) "MENNYIT ÉR AZ INGATLANOD?" – kis illusztráció
-  const ctaIllu = document.querySelector('.cta__illu');
-  if (ctaIllu && !ctaIllu.querySelector('img')) {
-    const img = document.createElement('img');
-    img.src = 'https://picsum.photos/seed/mini-house/240/160';
-    img.alt = 'Kis ház illusztráció';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    Object.assign(img.style, {
-      width: '120px', height: 'auto', position: 'absolute',
-      left: '12px', bottom: '8px', opacity: '0.95', borderRadius: '10px'
+    // Modal nyitás/zárás (auth + többi)
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const id = btn.getAttribute('data-open');
+        const m = document.getElementById(id);
+        if (!m) return;
+        m.setAttribute('aria-hidden','false');
+        m.classList.add('is-open');
+      });
     });
-    ctaIllu.appendChild(img);
-  }
-
-  // 3) LAKÓPARK KÁRTYÁK – 12 db kép
-  const parkSeeds = [
-    'park-1','park-2','park-3','park-4','park-5','park-6',
-    'park-7','park-8','park-9','park-10','park-11','park-12'
-  ];
-  const parkMedia = document.querySelectorAll('.grid.cards .card .card__media');
-  parkMedia.forEach((el, i) => {
-    // Ha már van benne <img>, nem duplázunk
-    if (el.querySelector('img')) return;
-    el.style.position = 'relative';
-    el.style.overflow = 'hidden';
-    const img = document.createElement('img');
-    img.src = `https://picsum.photos/seed/${encodeURIComponent(parkSeeds[i % parkSeeds.length])}/600/360`;
-    img.alt = 'Lakópark illusztráció';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    Object.assign(img.style, {
-      width: '100%', height: '140px', objectFit: 'cover', display: 'block'
+    document.querySelectorAll('[data-close], .modal .modal__close').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const modal = btn.closest('.modal');
+        if (modal){ modal.setAttribute('aria-hidden','true'); modal.classList.remove('is-open'); }
+      });
     });
-    // az SVG-k maradjanak, így előre fűzzük
-    el.prepend(img);
-  });
-
-  // 4) PRÉMIUM PARTNEREK – 6 db üzletember/üzletasszony portré
-  const agentImgs = [
-    'https://i.pravatar.cc/88?img=12',
-    'https://i.pravatar.cc/88?img=32',
-    'https://i.pravatar.cc/88?img=45',
-    'https://i.pravatar.cc/88?img=16',
-    'https://i.pravatar.cc/88?img=47',
-    'https://i.pravatar.cc/88?img=5'
-  ];
-  const agents = document.querySelectorAll('.agent .agent__media');
-  agents.forEach((wrap, i) => {
-    wrap.innerHTML = `<img src="${agentImgs[i % agentImgs.length]}" alt="Partner portré" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px;display:block;">`;
-  });
-
-  // 5) HÍREK – kiemelt + 2 oldalsó kép
-  const newsFeatured = document.querySelector('.news__featured .news__img');
-  if (newsFeatured) {
-    const img = newsFeatured.querySelector('img') || document.createElement('img');
-    img.src = 'https://picsum.photos/seed/news-featured/1200/720';
-    img.alt = 'Piaci hírek – városi lakások';
-    img.loading = 'lazy'; img.decoding = 'async';
-    img.style.cssText = 'width:100%;height:180px;object-fit:cover;display:block;';
-    if (!newsFeatured.querySelector('img')) newsFeatured.prepend(img);
-  }
-
-  const sideImgs = document.querySelectorAll('.news__side .side-card__img');
-  const sideSeeds = ['news-side-1', 'news-side-2'];
-  sideImgs.forEach((el, i) => {
-    if (el.querySelector('img')) return;
-    el.style.position = 'relative';
-    el.style.overflow = 'hidden';
-    const img = document.createElement('img');
-    img.src = `https://picsum.photos/seed/${encodeURIComponent(sideSeeds[i % sideSeeds.length])}/800/480`;
-    img.alt = i === 0 ? 'Otthon Start – családi ház' : 'Lakáshitel kalkulátor';
-    img.loading = 'lazy';
-    img.decoding = 'async';
-    Object.assign(img.style, {
-      width: '100%', height: '120px', objectFit: 'cover', display: 'block'
+    document.querySelectorAll('.modal').forEach(m=>{
+      m.addEventListener('click', (e)=>{ if (e.target === m){ m.setAttribute('aria-hidden','true'); m.classList.remove('is-open'); }});
     });
-    el.prepend(img);
-  });
 
-  // 6) EXTRA VÉDELEM: ha később te képfájlokat raksz a /img mappába,
-  // csak cseréld le a fenti URLs-t a sajátodra – a DOM marad.
-})();
-</script>
+    // Auth tab váltás
+    const tabLogin = document.getElementById('tab-login');
+    const tabSignup = document.getElementById('tab-signup');
+    const paneLogin = document.getElementById('pane-login');
+    const paneSignup = document.getElementById('pane-signup');
+    function setAuthTab(which){
+      const loginActive = which === 'login';
+      tabLogin.classList.toggle('is-active', loginActive);
+      tabSignup.classList.toggle('is-active', !loginActive);
+      paneLogin.classList.toggle('is-active', loginActive);
+      paneSignup.classList.toggle('is-active', !loginActive);
+      paneSignup.setAttribute('aria-hidden', String(loginActive));
+      paneLogin.setAttribute('aria-hidden', String(!loginActive));
+    }
+    if (tabLogin && tabSignup){
+      tabLogin.addEventListener('click', ()=>setAuthTab('login'));
+      tabSignup.addEventListener('click', ()=>setAuthTab('signup'));
+    }
+  </script>
 </body>
 </html>
