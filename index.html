@@ -6,6 +6,45 @@
   <title>Ingatlan Demo</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cpath fill='%23ff6a3d' d='M6 30 L32 10 L58 30 L58 56 L38 56 L38 38 L26 38 L26 56 L6 56 Z'/%3E%3C/svg%3E">
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- TFX: csak ÚJ elemekhez stílus (nem ír felül semmit) -->
+  <style>
+    /* --- Fejléc lenyíló --- */
+    .tfix-has-dropdown{position:relative}
+    .tfix-has-dropdown>a{display:inline-flex;align-items:center;gap:8px}
+    .tfix-caret{inline-size:0;block-size:0;border:5px solid transparent;border-top-color:currentColor;transform:translateY(2px)}
+    .tfix-dropdown{position:absolute;top:100%;left:0;min-width:220px;background:#fff;border:1px solid var(--line,#e6e6e6);border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,.08);padding:8px;display:none;z-index:20}
+    .tfix-has-dropdown:hover .tfix-dropdown,.tfix-has-dropdown:focus-within .tfix-dropdown{display:block}
+    .tfix-dd-item{display:block;padding:10px 12px;border-radius:8px;text-decoration:none;color:inherit}
+    .tfix-dd-item:hover{background:#f6f7fb}
+
+    /* --- App szekció (telefon.png + store képek) --- */
+    .tfix-app{padding:48px 0}
+    .tfix-app-inner{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center}
+    .tfix-phone{width:100%;max-width:360px;aspect-ratio:9/19;border-radius:24px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.15);background:#0e1430;display:grid;place-items:center}
+    .tfix-stores{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+    .tfix-store-img{display:none;width:150px;height:auto}
+    .tfix-store-svg{display:inline-flex}
+
+    /* --- Cookie sáv --- */
+    .tfix-cookiebar{position:fixed;inset:auto 16px 16px 16px;background:#111827;color:#fff;border-radius:14px;padding:14px 16px;display:flex;gap:12px;align-items:center;justify-content:space-between;box-shadow:0 8px 24px rgba(0,0,0,.25);z-index:60;transform:translateY(16px);opacity:0;pointer-events:none;transition:.25s ease}
+    .tfix-cookiebar.is-visible{transform:translateY(0);opacity:1;pointer-events:auto}
+    .tfix-cookiebar .tfix-accept{background:#22c55e;color:#06130a;border:none;padding:10px 14px;border-radius:10px;font-weight:700;cursor:pointer}
+
+    /* --- Mini chat demo --- */
+    .tfix-chat{position:fixed;right:16px;bottom:16px;z-index:70;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+    .tfix-chat-window{width:min(320px,90vw);max-height:60vh;background:#fff;border:1px solid var(--line,#eaeaea);border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,.15);overflow:hidden;display:none}
+    .tfix-chat-window.is-open{display:block}
+    .tfix-chat-header{background:#0b5fff;color:#fff;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;font-weight:700}
+    .tfix-chat-body{padding:12px;display:flex;flex-direction:column;gap:8px}
+    .tfix-msg{padding:10px 12px;border-radius:12px;background:#f2f5ff;align-self:flex-start;max-width:85%}
+    .tfix-msg.me{background:#e8fff2;align-self:flex-end}
+    .tfix-chat-toggle{background:#0b5fff;color:#fff;border:none;border-radius:999px;padding:12px 16px;font-weight:800;cursor:pointer;box-shadow:0 10px 24px rgba(11,95,255,.35)}
+
+    /* --- Mobil finomítások --- */
+    @media (max-width:900px){.tfix-app-inner{grid-template-columns:1fr}.tfix-dropdown{position:fixed;left:16px;right:16px;top:64px}}
+    .tfix-body-lock{overflow:hidden;touch-action:none}
+  </style>
 </head>
 <body>
   <!-- Fejléc -->
@@ -15,6 +54,18 @@
       <nav class="main-nav" aria-label="Fő navigáció">
         <button class="nav-toggle" aria-expanded="false" aria-controls="nav-list" id="navToggle" aria-label="Menü">☰</button>
         <ul id="nav-list" class="nav-list">
+          <!-- ÚJ: kiemelt lenyíló (a meglévők mellé) -->
+          <li class="tfix-has-dropdown">
+            <a href="#" aria-haspopup="true" aria-expanded="false">Funkciók <i class="tfix-caret" aria-hidden="true"></i></a>
+            <div class="tfix-dropdown" role="menu">
+              <a class="tfix-dd-item" href="#hitel" role="menuitem">FIX 3% lakáshitel</a>
+              <a class="tfix-dd-item" href="#csok" role="menuitem">CSOK+</a>
+              <a class="tfix-dd-item" href="#kereso" role="menuitem">Ingatlankereső</a>
+              <a class="tfix-dd-item" href="#tips" role="menuitem">Lakásvásárlási tippek (profi leírással)</a>
+            </div>
+          </li>
+
+          <!-- A meglévő menüpontjaid változatlanul: -->
           <li><a data-i18n="nav.fix" href="#hitel">FIX 3%-os lakáshitel</a></li>
           <li><a data-i18n="nav.csok" href="#csok">CSOK+</a></li>
           <li><a data-i18n="nav.search" href="#kereso">Ingatlankereső</a></li>
@@ -24,13 +75,11 @@
       </nav>
       <button class="btn btn--outline" data-open="postModal" data-i18n="cta.post">Hirdetésfeladás</button>
 
-      <!-- HU/EN zászlók -->
+      <!-- HU/EN zászlók (változatlan) -->
       <div class="lang-switch" aria-label="Nyelvváltás" style="display:inline-flex;gap:8px;align-items:center;margin-left:8px">
         <button class="lang-btn" type="button" title="Magyar" aria-label="Magyar" data-lang="hu" style="border:none;background:#fff;border-radius:8px;padding:6px;box-shadow:var(--shadow);border:1px solid var(--line);cursor:pointer">
           <svg width="22" height="14" viewBox="0 0 3 2" aria-hidden="true">
-            <rect width="3" height="2" fill="#fff"/>
-            <rect width="3" height="0.6667" y="0" fill="#ce2939"/>
-            <rect width="3" height="0.6667" y="1.3333" fill="#477050"/>
+            <rect width="3" height="2" fill="#fff"/><rect width="3" height="0.6667" y="0" fill="#ce2939"/><rect width="3" height="0.6667" y="1.3333" fill="#477050"/>
           </svg>
         </button>
         <button class="lang-btn" type="button" title="English" aria-label="English" data-lang="en" style="border:none;background:#fff;border-radius:8px;padding:6px;box-shadow:var(--shadow);border:1px solid var(--line);cursor:pointer">
@@ -50,26 +99,19 @@
     </div>
   </header>
 
-  <!-- Hero + Kereső -->
+  <!-- Hero + Kereső (változatlan) -->
   <section class="hero" id="kereso">
     <div class="container">
       <p class="eyebrow" data-i18n="ad.label">Hirdetés</p>
-
-      <!-- KISEBB banner, fix 180px -->
       <div class="ad-banner" role="img" aria-label="Ingatlan hirdetés" style="position:relative;overflow:hidden;border-radius:12px">
-        <img loading="lazy" decoding="async" alt="Hirdetés"
-             style="width:100%;height:180px;object-fit:cover;display:block"
-             src="hirdetes.jpg">
+        <img loading="lazy" decoding="async" alt="Hirdetés" style="width:100%;height:180px;object-fit:cover;display:block" src="hirdetes.jpg">
       </div>
-
       <h1 class="hero__title" data-i18n="hero.title">Mindenhol jó, de a legjobb itt vár rád.</h1>
-
       <form class="searchbar" id="searchForm" role="search">
         <fieldset class="searchbar__type">
           <label class="radio"><input type="radio" name="deal" value="elado" checked> <span data-i18n="search.sale">Eladó</span></label>
           <label class="radio"><input type="radio" name="deal" value="kiado"> <span data-i18n="search.rent">Kiadó</span></label>
         </fieldset>
-
         <div class="searchbar__row">
           <div class="field">
             <label for="type" data-i18n="search.type">Típus</label>
@@ -81,45 +123,32 @@
               <option data-i18n="type.garage">garázs</option>
             </select>
           </div>
-
           <div class="field">
             <label for="where" data-i18n="search.where">Hol keresel?</label>
             <input id="where" name="where" placeholder="város, kerület, utca…">
           </div>
-
           <div class="field">
             <label for="price" data-i18n="search.price">Ár</label>
             <input id="price" name="price" inputmode="numeric" placeholder="millió Ft">
           </div>
-
           <div class="field">
             <label for="size" data-i18n="search.size">Alapterület</label>
             <input id="size" name="size" inputmode="numeric" placeholder="m²">
           </div>
-
           <div class="field">
             <label for="rooms" data-i18n="search.rooms">Szobaszám</label>
             <input id="rooms" name="rooms" inputmode="numeric" placeholder="db">
           </div>
-
           <button class="btn btn--primary search-btn" aria-label="Keresés">🔎</button>
         </div>
-
         <div class="searchbar__extras">
-          <label class="switch">
-            <input type="checkbox" id="fix3">
-            <span>FIX 3%</span>
-          </label>
-          <label class="switch">
-            <input type="checkbox" id="newbuild">
-            <span data-i18n="filter.new">Új építésű</span>
-          </label>
+          <label class="switch"><input type="checkbox" id="fix3"><span>FIX 3%</span></label>
+          <label class="switch"><input type="checkbox" id="newbuild"><span data-i18n="filter.new">Új építésű</span></label>
           <button type="button" class="link-btn" data-open="advancedModal" data-i18n="search.advanced">Részletes kereső</button>
         </div>
       </form>
     </div>
   </section>
-
   <!-- FIX 3% információ -->
   <section class="strip" id="hitel">
     <div class="container strip__inner">
@@ -133,7 +162,6 @@
   <section class="cta">
     <div class="container cta__inner">
       <div class="cta__illu" aria-hidden="true" style="position:relative;overflow:hidden">
-        <!-- meglévő dísz grafika -->
         <svg viewBox="0 0 160 110" aria-hidden="true" style="position:absolute;inset:0;opacity:.35">
           <rect x="18" y="18" width="124" height="20" rx="10" fill="#1f2b6c"/>
           <rect x="18" y="48" width="90" height="14" rx="7" fill="#0b5fff"/>
@@ -147,6 +175,7 @@
       </div>
     </div>
   </section>
+
   <!-- Lakópark ajánlók – 12 saját kép -->
   <section class="section">
     <div class="container">
@@ -310,12 +339,10 @@
       <div class="carousel" aria-roledescription="carousel">
         <button class="carousel__nav prev" aria-label="Előző">‹</button>
         <div class="carousel__track" id="partnerTrack" tabindex="0" role="group" aria-label="Partnerek listája">
-          <!-- 1: Pálfi Edina -->
+          <!-- 1 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="edina.jpg" alt="Pálfi Edina" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="edina.jpg" alt="Pálfi Edina" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Pálfi Edina</h3>
@@ -323,12 +350,10 @@
             <ul class="agent__meta"><li>15 éve a platformon</li><li><strong>Jutalék: 3,5–4%</strong></li></ul>
           </article>
 
-          <!-- 2: Dr. Osztrogonácz András -->
+          <!-- 2 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="osztrogonaczandras.jpg" alt="Dr. Osztrogonácz András" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="osztrogonaczandras.jpg" alt="Dr. Osztrogonácz András" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Dr. Osztrogonácz András</h3>
@@ -336,12 +361,10 @@
             <ul class="agent__meta"><li>4 éve a platformon</li><li><strong>Jutalék: 4,4%</strong></li></ul>
           </article>
 
-          <!-- 3: Galavics Andrea -->
+          <!-- 3 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="andrea.jpg" alt="Galavics Andrea" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="andrea.jpg" alt="Galavics Andrea" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Galavics Andrea</h3>
@@ -349,12 +372,10 @@
             <ul class="agent__meta"><li>12 éve a platformon</li><li><strong>Jutalék: 1,5–3%</strong></li></ul>
           </article>
 
-          <!-- 4: Szabó Béla -->
+          <!-- 4 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="bela.jpg" alt="Szabó Béla" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="bela.jpg" alt="Szabó Béla" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Szabó Béla</h3>
@@ -362,12 +383,10 @@
             <ul class="agent__meta"><li>6 éve a platformon</li><li><strong>Jutalék: 3,8–6,4%</strong></li></ul>
           </article>
 
-          <!-- 5: Kiss Dóra -->
+          <!-- 5 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="dora.jpg" alt="Kiss Dóra" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="dora.jpg" alt="Kiss Dóra" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Kiss Dóra</h3>
@@ -375,12 +394,10 @@
             <ul class="agent__meta"><li>8 éve a platformon</li><li><strong>Jutalék: 2,9–4,9%</strong></li></ul>
           </article>
 
-          <!-- 6: Nagy Ferenc -->
+          <!-- 6 -->
           <article class="agent">
             <div class="agent__media">
-              <img src="nagyferenc.jpg" alt="Nagy Ferenc" width="88" height="88"
-                   loading="lazy" decoding="async"
-                   style="width:88px;height:88px;object-fit:cover;border-radius:12px">
+              <img src="nagyferenc.jpg" alt="Nagy Ferenc" width="88" height="88" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px">
             </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Nagy Ferenc</h3>
@@ -448,7 +465,6 @@
 
           <article class="side-card">
             <div class="side-card__img img--calc" style="position:relative;overflow:hidden">
-              <!-- KÉRÉS SZERINT: saját kalkulátor kép -->
               <img
                 src="kalkulator.jpg"
                 alt="Lakáshitel kalkulátor és lakópark"
@@ -462,24 +478,28 @@
       </div>
     </div>
   </section>
-  <!-- App promó -->
+
+  <!-- App promó – FRISSÍTVE: telefon.png + saját store képek + SVG fallback -->
   <section class="app-promo">
-    <div class="container app-promo__inner">
-      <div class="phone-mock" aria-hidden="true" style="position:relative;display:grid;place-items:center;overflow:hidden">
-        <svg viewBox="0 0 240 440" width="160" aria-hidden="true">
-          <rect x="30" y="10" width="180" height="420" rx="28" fill="#0e1430"/>
-          <rect x="38" y="50" width="164" height="332" rx="18" fill="#111c47"/>
-          <text x="120" y="220" text-anchor="middle" fill="#ffffff" font-size="16" font-weight="800">INGATLAN APP</text>
-          <rect x="95" y="398" width="50" height="6" rx="3" fill="#9fb3ff"/>
-          <circle cx="120" cy="28" r="4" fill="#9fb3ff"/>
-        </svg>
+    <div class="container app-promo__inner tfix-app">
+      <div class="tfix-phone" aria-hidden="true">
+        <img src="telefon.png" alt="Mobil app előnézet" style="width:100%;height:100%;object-fit:cover;">
       </div>
-      <div>
+      <div class="tfix-app-copy">
         <h3 data-i18n="app.title">Töltsd le a mobilappot!</h3>
         <p data-i18n="app.desc">Eladó vagy kiadó ingatlant keresel? Vidd magaddal a teljes kínálatot, bárhol, bármikor.</p>
-        <div class="store-buttons">
-          <a class="store store--apple" href="#" role="button" aria-label="App Store">
-            <!-- Apple badge (vektor) -->
+
+        <div class="tfix-stores">
+          <!-- Képes badge-ek (ha a fájlok elérhetők, JS átvált rájuk) -->
+          <a class="store" href="#" aria-label="App Store">
+            <img class="tfix-store-img" id="tfix-appstore-img" src="appstore.png" alt="Letöltés az App Store-ból">
+          </a>
+          <a class="store" href="#" aria-label="Google Play">
+            <img class="tfix-store-img" id="tfix-googleplay-img" src="googleplay.png" alt="Letöltés a Google Play-en">
+          </a>
+
+          <!-- Eredeti vektoros badge-ek (fallback) -->
+          <a class="store store--apple tfix-store-svg" href="#" role="button" aria-label="App Store">
             <svg width="120" height="40" viewBox="0 0 120 40" aria-hidden="true">
               <rect x="0.5" y="0.5" width="119" height="39" rx="8" fill="#000"/><rect x="0.5" y="0.5" width="119" height="39" rx="8" fill="none" stroke="#333"/>
               <g transform="translate(10,8)">
@@ -488,8 +508,7 @@
               </g>
             </svg>
           </a>
-          <a class="store store--google" href="#" role="button" aria-label="Google Play">
-            <!-- Google Play badge (vektor) -->
+          <a class="store store--google tfix-store-svg" href="#" role="button" aria-label="Google Play">
             <svg width="130" height="40" viewBox="0 0 130 40" aria-hidden="true">
               <rect x="0.5" y="0.5" width="129" height="39" rx="8" fill="#000"/><rect x="0.5" y="0.5" width="129" height="39" rx="8" fill="none" stroke="#333"/>
               <g transform="translate(10,9)">
@@ -502,8 +521,7 @@
       </div>
     </div>
   </section>
-
-  <!-- Gyorslinkek -->
+  <!-- Gyorslinkek (változatlan) -->
   <section class="quicklinks">
     <div class="container">
       <div class="tabs" role="tablist" aria-label="Gyorslinkek">
@@ -552,7 +570,7 @@
     </div>
   </section>
 
-  <!-- Lábléc -->
+  <!-- Lábléc (változatlan) -->
   <footer class="footer">
     <div class="container footer__grid">
       <div>
@@ -606,7 +624,7 @@
     </div>
   </footer>
 
-  <!-- MODÁLOK – modern auth + a többi az eredeti szerint -->
+  <!-- MODÁLOK (változatlan) -->
   <div class="modal" id="authModal" aria-hidden="true" role="dialog" aria-labelledby="authTitle">
     <div class="modal__dialog" style="position:relative;overflow:hidden">
       <button class="modal__close" data-close aria-label="Bezárás">×</button>
@@ -691,57 +709,133 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <!-- ÚJ: COOKIE SÁV + MINI CHAT (tedd a </body> elé, a scriptek fölé) -->
+  <div class="tfix-cookiebar" id="tfixCookiebar" aria-live="polite" aria-label="Sütik engedélyezése">
+    <p>Az oldal sütiket használ a jobb működés érdekében. <a href="#" style="color:#9ad4ff;text-decoration:underline">Tudj meg többet</a></p>
+    <button class="tfix-accept" id="tfixAcceptCookies">Elfogadom</button>
+  </div>
+
+  <div class="tfix-chat" id="tfixChat">
+    <div class="tfix-chat-window" id="tfixChatWin" role="dialog" aria-label="Chat (demo)">
+      <div class="tfix-chat-header">
+        <span>Ügyfélszolgálat (demo)</span>
+        <button class="modal__close" id="tfixChatClose" aria-label="Bezárás">×</button>
+      </div>
+      <div class="tfix-chat-body" id="tfixChatBody">
+        <div class="tfix-msg">Szia! 👋 Miben segíthetünk? (Ez csak bemutató üzenet.)</div>
+        <div class="tfix-msg me">Érdekel a FIX 3% és a CSOK+ is.</div>
+        <div class="tfix-msg">Szuper! A fejlécben a <strong>Funkciók</strong> menü alatt mindent megtalálsz.</div>
+      </div>
+    </div>
+    <button class="tfix-chat-toggle" id="tfixChatToggle" aria-expanded="false" aria-controls="tfixChatWin">Chat</button>
+  </div>
+  <!-- TFX: JS kiegészítések – cookie, mini chat, store-kép fallback, mobil nav stabil -->
   <script>
-    // Mobil menü gomb
-    const navToggle = document.getElementById('navToggle');
-    if (navToggle) {
-      navToggle.addEventListener('click', () => {
-        const list = document.getElementById('nav-list');
-        const exp = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', String(!exp));
-        list.classList.toggle('is-open');
-      });
-    }
+    (function(){
+      // --- Cookie sáv ---
+      try {
+        const bar = document.getElementById('tfixCookiebar');
+        const btn = document.getElementById('tfixAcceptCookies');
+        if (bar && btn) {
+          const KEY = 'tfix.cookies.accepted.v1';
+          const accepted = localStorage.getItem(KEY) === '1';
+          if (!accepted) bar.classList.add('is-visible');
+          btn.addEventListener('click', () => {
+            localStorage.setItem(KEY, '1');
+            bar.classList.remove('is-visible');
+          });
+        }
+      } catch(e) { /* no-op */ }
 
-    // Modal nyitás/zárás (auth + többi)
-    document.querySelectorAll('[data-open]').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const id = btn.getAttribute('data-open');
-        const m = document.getElementById(id);
-        if (!m) return;
-        m.setAttribute('aria-hidden','false');
-        m.classList.add('is-open');
-      });
-    });
-    document.querySelectorAll('[data-close], .modal .modal__close').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
-        const modal = btn.closest('.modal');
-        if (modal){ modal.setAttribute('aria-hidden','true'); modal.classList.remove('is-open'); }
-      });
-    });
-    document.querySelectorAll('.modal').forEach(m=>{
-      m.addEventListener('click', (e)=>{ if (e.target === m){ m.setAttribute('aria-hidden','true'); m.classList.remove('is-open'); }});
-    });
+      // --- Mini chat (demo) ---
+      try {
+        const chatWin = document.getElementById('tfixChatWin');
+        const chatToggle = document.getElementById('tfixChatToggle');
+        const chatClose = document.getElementById('tfixChatClose');
+        if (chatWin && chatToggle) {
+          const open = () => { chatWin.classList.add('is-open'); chatToggle.setAttribute('aria-expanded','true'); };
+          const close = () => { chatWin.classList.remove('is-open'); chatToggle.setAttribute('aria-expanded','false'); };
+          chatToggle.addEventListener('click', () => {
+            const isOpen = chatWin.classList.contains('is-open');
+            isOpen ? close() : open();
+          });
+          if (chatClose) chatClose.addEventListener('click', close);
+          // ESC zárás
+          document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+        }
+      } catch(e) { /* no-op */ }
 
-    // Auth tab váltás
-    const tabLogin = document.getElementById('tab-login');
-    const tabSignup = document.getElementById('tab-signup');
-    const paneLogin = document.getElementById('pane-login');
-    const paneSignup = document.getElementById('pane-signup');
-    function setAuthTab(which){
-      const loginActive = which === 'login';
-      tabLogin.classList.toggle('is-active', loginActive);
-      tabSignup.classList.toggle('is-active', !loginActive);
-      paneLogin.classList.toggle('is-active', loginActive);
-      paneSignup.classList.toggle('is-active', !loginActive);
-      paneSignup.setAttribute('aria-hidden', String(loginActive));
-      paneLogin.setAttribute('aria-hidden', String(!loginActive));
-    }
-    if (tabLogin && tabSignup){
-      tabLogin.addEventListener('click', ()=>setAuthTab('login'));
-      tabSignup.addEventListener('click', ()=>setAuthTab('signup'));
-    }
+      // --- App Store / Google Play képes badge fallback a vektor helyett ---
+      try {
+        const appImg = document.getElementById('tfix-appstore-img');
+        const gpImg  = document.getElementById('tfix-googleplay-img');
+        const svgBadges = document.querySelectorAll('.tfix-store-svg');
+
+        function swapIfLoaded(imgEl){
+          return new Promise(resolve=>{
+            if (!imgEl) return resolve(false);
+            if (imgEl.complete && imgEl.naturalWidth > 0) return resolve(true);
+            imgEl.addEventListener('load', ()=>resolve(true), {once:true});
+            imgEl.addEventListener('error', ()=>resolve(false), {once:true});
+          });
+        }
+
+        Promise.all([swapIfLoaded(appImg), swapIfLoaded(gpImg)]).then(([appOk, gpOk])=>{
+          // Ha bármelyik képes badge betöltött, mutassuk a képeket és rejtsük az SVG-ket
+          if (appOk && appImg) appImg.style.display = 'inline-block';
+          if (gpOk && gpImg) gpImg.style.display = 'inline-block';
+          if ((appOk || gpOk) && svgBadges.length){
+            svgBadges.forEach(el => el.style.display = 'none');
+          }
+        });
+      } catch(e) { /* no-op */ }
+
+      // --- Fejléc "Funkciók" lenyíló: katt-ra aria-expanded állítás ---
+      try {
+        const ddTrigger = document.querySelector('.tfix-has-dropdown > a');
+        if (ddTrigger) {
+          ddTrigger.addEventListener('click', (e)=>{
+            e.preventDefault();
+            const expanded = ddTrigger.getAttribute('aria-expanded') === 'true';
+            ddTrigger.setAttribute('aria-expanded', String(!expanded));
+          });
+          // fókuszvesztésre zárjuk
+          const dd = ddTrigger.nextElementSibling;
+          if (dd) {
+            dd.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ ddTrigger.setAttribute('aria-expanded','false'); ddTrigger.focus(); } });
+          }
+        }
+      } catch(e) { /* no-op */ }
+
+      // --- Mobil hamburger stabilizálás: body lock + menüpont kattintásra zárás ---
+      try {
+        const navToggle = document.getElementById('navToggle');
+        const navList = document.getElementById('nav-list');
+        const BODY_LOCK_CLASS = 'tfix-body-lock';
+        function syncBodyLock(){
+          const isOpen = navList && navList.classList.contains('is-open');
+          document.documentElement.classList.toggle(BODY_LOCK_CLASS, !!isOpen);
+          document.body.classList.toggle(BODY_LOCK_CLASS, !!isOpen);
+        }
+        if (navToggle && navList) {
+          // Ha a meglévő kód már toggle-olja az 'is-open'-t, csak szinkronizálunk
+          navToggle.addEventListener('click', syncBodyLock);
+          // Linkre kattintva zárjon
+          navList.addEventListener('click', (e)=>{
+            const t = e.target;
+            if (t && (t.tagName === 'A' || t.closest('a') || t.closest('button'))) {
+              navList.classList.remove('is-open');
+              navToggle.setAttribute('aria-expanded','false');
+              syncBodyLock();
+            }
+          });
+          // Ablakméret változásra is szedd le a lockot
+          window.addEventListener('resize', ()=>{ if (window.innerWidth > 900){ navList.classList.remove('is-open'); navToggle.setAttribute('aria-expanded','false'); syncBodyLock(); }});
+        }
+      } catch(e) { /* no-op */ }
+    })();
   </script>
+
+  <!-- (A TE meglévő scriptjeid után helyezd el ezt a blokkot.) -->
 </body>
 </html>
