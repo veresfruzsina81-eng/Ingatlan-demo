@@ -734,5 +734,104 @@
   </div>
 
   <script src="app.js"></script>
+<script>
+(function () {
+  // 1) FEJLÉC ALATTI HIRDETÉS (HERO)
+  const hero = document.querySelector('.ad-banner');
+  if (hero) {
+    hero.style.position = 'relative';
+    hero.style.overflow = 'hidden';
+    hero.innerHTML = `
+      <img src="https://picsum.photos/seed/realestate-hero/1600/520"
+           alt="Modern lakópark – hirdetés"
+           style="width:100%;height:280px;object-fit:cover;display:block;border-radius:var(--radius,12px);" loading="lazy" decoding="async">
+      ${hero.innerHTML}
+    `;
+  }
+
+  // 2) "MENNYIT ÉR AZ INGATLANOD?" – kis illusztráció
+  const ctaIllu = document.querySelector('.cta__illu');
+  if (ctaIllu && !ctaIllu.querySelector('img')) {
+    const img = document.createElement('img');
+    img.src = 'https://picsum.photos/seed/mini-house/240/160';
+    img.alt = 'Kis ház illusztráció';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    Object.assign(img.style, {
+      width: '120px', height: 'auto', position: 'absolute',
+      left: '12px', bottom: '8px', opacity: '0.95', borderRadius: '10px'
+    });
+    ctaIllu.appendChild(img);
+  }
+
+  // 3) LAKÓPARK KÁRTYÁK – 12 db kép
+  const parkSeeds = [
+    'park-1','park-2','park-3','park-4','park-5','park-6',
+    'park-7','park-8','park-9','park-10','park-11','park-12'
+  ];
+  const parkMedia = document.querySelectorAll('.grid.cards .card .card__media');
+  parkMedia.forEach((el, i) => {
+    // Ha már van benne <img>, nem duplázunk
+    if (el.querySelector('img')) return;
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    const img = document.createElement('img');
+    img.src = `https://picsum.photos/seed/${encodeURIComponent(parkSeeds[i % parkSeeds.length])}/600/360`;
+    img.alt = 'Lakópark illusztráció';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    Object.assign(img.style, {
+      width: '100%', height: '140px', objectFit: 'cover', display: 'block'
+    });
+    // az SVG-k maradjanak, így előre fűzzük
+    el.prepend(img);
+  });
+
+  // 4) PRÉMIUM PARTNEREK – 6 db üzletember/üzletasszony portré
+  const agentImgs = [
+    'https://i.pravatar.cc/88?img=12',
+    'https://i.pravatar.cc/88?img=32',
+    'https://i.pravatar.cc/88?img=45',
+    'https://i.pravatar.cc/88?img=16',
+    'https://i.pravatar.cc/88?img=47',
+    'https://i.pravatar.cc/88?img=5'
+  ];
+  const agents = document.querySelectorAll('.agent .agent__media');
+  agents.forEach((wrap, i) => {
+    wrap.innerHTML = `<img src="${agentImgs[i % agentImgs.length]}" alt="Partner portré" loading="lazy" decoding="async" style="width:88px;height:88px;object-fit:cover;border-radius:12px;display:block;">`;
+  });
+
+  // 5) HÍREK – kiemelt + 2 oldalsó kép
+  const newsFeatured = document.querySelector('.news__featured .news__img');
+  if (newsFeatured) {
+    const img = newsFeatured.querySelector('img') || document.createElement('img');
+    img.src = 'https://picsum.photos/seed/news-featured/1200/720';
+    img.alt = 'Piaci hírek – városi lakások';
+    img.loading = 'lazy'; img.decoding = 'async';
+    img.style.cssText = 'width:100%;height:180px;object-fit:cover;display:block;';
+    if (!newsFeatured.querySelector('img')) newsFeatured.prepend(img);
+  }
+
+  const sideImgs = document.querySelectorAll('.news__side .side-card__img');
+  const sideSeeds = ['news-side-1', 'news-side-2'];
+  sideImgs.forEach((el, i) => {
+    if (el.querySelector('img')) return;
+    el.style.position = 'relative';
+    el.style.overflow = 'hidden';
+    const img = document.createElement('img');
+    img.src = `https://picsum.photos/seed/${encodeURIComponent(sideSeeds[i % sideSeeds.length])}/800/480`;
+    img.alt = i === 0 ? 'Otthon Start – családi ház' : 'Lakáshitel kalkulátor';
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    Object.assign(img.style, {
+      width: '100%', height: '120px', objectFit: 'cover', display: 'block'
+    });
+    el.prepend(img);
+  });
+
+  // 6) EXTRA VÉDELEM: ha később te képfájlokat raksz a /img mappába,
+  // csak cseréld le a fenti URLs-t a sajátodra – a DOM marad.
+})();
+</script>
 </body>
 </html>
