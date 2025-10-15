@@ -172,7 +172,7 @@ const i18n = {
     'search.sale':'Eladó','search.rent':'Kiadó','search.type':'Típus','search.where':'Hol keresel?','search.price':'Ár','search.size':'Alapterület','search.rooms':'Szobaszám','search.advanced':'Részletes kereső',
     'type.flat':'lakás','type.house':'ház','type.plot':'telek','type.office':'iroda','type.garage':'garázs',
     'filter.new':'Új építésű',
-    'fix.q':'Első ingatlanod?','fix.desc':'Keresd a FIX 3% jelölésű hirdetéseket – ezek megfelelhetnek a FIX 3%-os lakáshitel feltételeinek.','fix.more':'Bővebben a FIX 3%-os lakáshitelről','fix.modal':'Demo tájékoztató...','fix.ok':'Értettem',
+    'fix.q':'Első ingatlanod?','fix.desc':'Keresd a FIX 3% jelölésű hirdetéseket – ezek megfelelhetnek a FIX 3%-os lakáshitel feltételeinek.','fix.more':'Bővebben a FIX 3% -os lakáshitelről','fix.modal':'Demo tájékoztató...','fix.ok':'Értettem',
     'val.title':'Tudd meg, mennyit ér az ingatlanod!','val.desc':'Ingyenes, gyors értékbecslés becslési sávval és környék-összehasonlítással.','val.btn':'Megnézem →','val.modalTitle':'Ingatlan értékbecslő (demo)','val.ask':'Becsült érték kérése',
     'parks.title':'Lakóparkba költöznél?','partner.title':'Prémium Partner','partner.badge':'Partner Program','partner.all':'Megnézem az összes Partnert',
     'news.title':'Legfrissebb hírek, cikkek',
