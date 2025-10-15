@@ -21,7 +21,14 @@
           <li><button class="link-btn" data-open="authModal">Bejelentkezés / Regisztráció</button></li>
         </ul>
       </nav>
-      <button class="btn btn--outline" data-open="postModal">Hirdetésfeladás</button>
+      <div class="header-right" style="display:flex;align-items:center;gap:10px;">
+        <button class="btn btn--outline" data-open="postModal">Hirdetésfeladás</button>
+        <!-- 🇭🇺 / 🇬🇧 nyelvváltó -->
+        <span class="lang-switch" style="display:flex;gap:8px;">
+          <img src="https://flagcdn.com/w20/hu.png" id="flagHu" alt="Magyar" title="Magyar">
+          <img src="https://flagcdn.com/w20/gb.png" id="flagEn" alt="English" title="English">
+        </span>
+      </div>
     </div>
   </header>
 
@@ -29,7 +36,9 @@
   <section class="hero" id="kereso">
     <div class="container">
       <p class="eyebrow">Hirdetés</p>
-      <div class="ad-banner" role="img" aria-label="Példa hirdetés"></div>
+      <!-- illusztrált banner -->
+      <div class="ad-banner" role="img" aria-label="Példa hirdetés"
+           style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/hero-city-isometric.svg');background-size:cover;background-position:center;border-radius:12px;min-height:180px;"></div>
 
       <h1 class="hero__title">Mindenhol jó, de a legjobb itt vár rád.</h1>
 
@@ -71,9 +80,7 @@
             <input id="rooms" name="rooms" inputmode="numeric" placeholder="db">
           </div>
 
-          <button class="btn btn--primary search-btn" aria-label="Keresés">
-            🔎
-          </button>
+          <button class="btn btn--primary search-btn" aria-label="Keresés">🔎</button>
         </div>
 
         <div class="searchbar__extras">
@@ -103,7 +110,10 @@
   <!-- Értékbecslő CTA -->
   <section class="cta">
     <div class="container cta__inner">
-      <div class="cta__illu" aria-hidden="true"></div>
+      <!-- isometric értékbecslő illu -->
+      <div class="cta__illu" aria-hidden="true" style="min-width:140px;min-height:110px;">
+        <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/valuator-3d.svg" alt="" style="width:160px;height:auto;">
+      </div>
       <div>
         <h2>Tudd meg, mennyit ér az ingatlanod!</h2>
         <p>Ingyenes, gyors értékbecslés becslési sávval és környék-összehasonlítással.</p>
@@ -117,97 +127,54 @@
     <div class="container">
       <h2>Lakóparkba költöznél?</h2>
       <div class="grid cards" id="estateGrid">
-        <!-- 12 kártya – placeholder képpel és szöveggel -->
-        <!-- 1 -->
+        <!-- 12 kártya – mind illusztrációval -->
         <article class="card">
-          <div class="card__media media--warm">10–90% fizetési ütemezés</div>
-          <div class="card__body">
-            <h3>Thermal Zugló 5</h3>
-            <p>Kedvezményes lakások csendes, zöld környezetben. Befektetésnek is kiváló.</p>
-          </div>
-        </article>
-        <!-- 2 -->
-        <article class="card">
-          <div class="card__media media--forest">Prémium kivitel</div>
-          <div class="card__body">
-            <h3>Harmat Liget</h3>
-            <p>Természetközeli otthonok a Madárhegy szívében, 11. kerület.</p>
-          </div>
-        </article>
-        <!-- 3 -->
-        <article class="card">
-          <div class="card__media media--navy">Duna-part, örök panoráma</div>
-          <div class="card__body">
-            <h3>Marina City 3</h3>
-            <p>Új ütem, rugalmas fizetés, autómentes zöld környezet.</p>
-          </div>
-        </article>
-        <!-- 4 -->
-        <article class="card">
-          <div class="card__media media--aqua">Wellness & fitness</div>
-          <div class="card__body">
-            <h3>Waterside</h3>
-            <p>Prémium burkolatok, tágas parkolók, IV. negyedéves átadás.</p>
-          </div>
-        </article>
-        <!-- 5 -->
-        <article class="card">
-          <div class="card__media media--purple">Bevezető árak</div>
-          <div class="card__body">
-            <h3>Revital Park</h3>
-            <p>A+ energia, zöld környezet, Újbuda szívében.</p>
-          </div>
-        </article>
-        <!-- 6 -->
-        <article class="card">
-          <div class="card__media media--sand">Erkélyes lakások</div>
-          <div class="card__body">
-            <h3>Jasmine Club House</h3>
-            <p>Csendes, bensőséges közeg a XIII. kerületben.</p>
-          </div>
-        </article>
-        <!-- 7..12: generikus -->
-        <article class="card">
-          <div class="card__media media--teal">AA+ energia</div>
-          <div class="card__body">
-            <h3>Parkville</h3>
-            <p>Fiatalos, modern otthonok, kiváló közlekedéssel.</p>
-          </div>
+          <div class="card__media media--warm" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-1.svg');background-size:cover;background-position:center;">10–90% fizetési ütemezés</div>
+          <div class="card__body"><h3>Thermal Zugló 5</h3><p>Kedvezményes lakások csendes, zöld környezetben. Befektetésnek is kiváló.</p></div>
         </article>
         <article class="card">
-          <div class="card__media media--sun">Balaton 100 m</div>
-          <div class="card__body">
-            <h3>My Lelle</h3>
-            <p>Vízpart közeli apartmanok nagy teraszokkal.</p>
-          </div>
+          <div class="card__media media--forest" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-2.svg');background-size:cover;background-position:center;">Prémium kivitel</div>
+          <div class="card__body"><h3>Harmat Liget</h3><p>Természetközeli otthonok a Madárhegy szívében, 11. kerület.</p></div>
         </article>
         <article class="card">
-          <div class="card__media media--stone">Debrecen</div>
-          <div class="card__body">
-            <h3>Epres Liget</h3>
-            <p>Családbarát környék, kiváló elhelyezkedés.</p>
-          </div>
+          <div class="card__media media--navy" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-3.svg');background-size:cover;background-position:center;">Duna-part, örök panoráma</div>
+          <div class="card__body"><h3>Marina City 3</h3><p>Új ütem, rugalmas fizetés, autómentes zöld környezet.</p></div>
         </article>
         <article class="card">
-          <div class="card__media media--leaf">Kertváros</div>
-          <div class="card__body">
-            <h3>Woodland 2</h3>
-            <p>Parkosított belső udvar, közösségi terek.</p>
-          </div>
+          <div class="card__media media--aqua" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-4.svg');background-size:cover;background-position:center;">Wellness & fitness</div>
+          <div class="card__body"><h3>Waterside</h3><p>Prémium burkolatok, tágas parkolók, IV. negyedéves átadás.</p></div>
         </article>
         <article class="card">
-          <div class="card__media media--rust">Belváros</div>
-          <div class="card__body">
-            <h3>Novus Liget</h3>
-            <p>Városi életérzés prémium szolgáltatásokkal.</p>
-          </div>
+          <div class="card__media media--purple" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-5.svg');background-size:cover;background-position:center;">Bevezető árak</div>
+          <div class="card__body"><h3>Revital Park</h3><p>A+ energia, zöld környezet, Újbuda szívében.</p></div>
         </article>
         <article class="card">
-          <div class="card__media media--sky">Új ütem</div>
-          <div class="card__body">
-            <h3>River Heights</h3>
-            <p>Folyóparti sétány, közösségi tetőterasz.</p>
-          </div>
+          <div class="card__media media--sand" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-6.svg');background-size:cover;background-position:center;">Erkélyes lakások</div>
+          <div class="card__body"><h3>Jasmine Club House</h3><p>Csendes, bensőséges közeg a XIII. kerületben.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--teal" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-7.svg');background-size:cover;background-position:center;">AA+ energia</div>
+          <div class="card__body"><h3>Parkville</h3><p>Fiatalos, modern otthonok, kiváló közlekedéssel.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--sun" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-8.svg');background-size:cover;background-position:center;">Balaton 100 m</div>
+          <div class="card__body"><h3>My Lelle</h3><p>Vízpart közeli apartmanok nagy teraszokkal.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--stone" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-9.svg');background-size:cover;background-position:center;">Debrecen</div>
+          <div class="card__body"><h3>Epres Liget</h3><p>Családbarát környék, kiváló elhelyezkedés.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--leaf" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-10.svg');background-size:cover;background-position:center;">Kertváros</div>
+          <div class="card__body"><h3>Woodland 2</h3><p>Parkosított belső udvar, közösségi terek.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--rust" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-11.svg');background-size:cover;background-position:center;">Belváros</div>
+          <div class="card__body"><h3>Novus Liget</h3><p>Városi életérzés prémium szolgáltatásokkal.</p></div>
+        </article>
+        <article class="card">
+          <div class="card__media media--sky" style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/house-3d-12.svg');background-size:cover;background-position:center;">Új ütem</div>
+          <div class="card__body"><h3>River Heights</h3><p>Folyóparti sétány, közösségi tetőterasz.</p></div>
         </article>
       </div>
     </div>
@@ -224,9 +191,11 @@
       <div class="carousel" aria-roledescription="carousel">
         <button class="carousel__nav prev" aria-label="Előző">‹</button>
         <div class="carousel__track" id="partnerTrack">
-          <!-- Partner kártyák -->
+          <!-- Partner kártyák – illusztrált üzletemberek -->
           <article class="agent">
-            <div class="agent__media avatar">PE</div>
+            <div class="agent__media" style="height:140px;border-radius:12px;background:#f5f7ff;display:grid;place-items:center">
+              <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/agent-female-3d.svg" alt="Pálfi Edina" style="height:120px">
+            </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Pálfi Edina</h3>
             <p class="muted">Vonyarcvashegy, Hévíz, Keszthely</p>
@@ -237,7 +206,9 @@
           </article>
 
           <article class="agent">
-            <div class="agent__media avatar">OA</div>
+            <div class="agent__media" style="height:140px;border-radius:12px;background:#f5f7ff;display:grid;place-items:center">
+              <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/agent-male-3d.svg" alt="Dr. Osztrogonácz András" style="height:120px">
+            </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Dr. Osztrogonácz András</h3>
             <p class="muted">Budapest</p>
@@ -248,7 +219,9 @@
           </article>
 
           <article class="agent">
-            <div class="agent__media avatar">GA</div>
+            <div class="agent__media" style="height:140px;border-radius:12px;background:#f5f7ff;display:grid;place-items:center">
+              <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/agent-female2-3d.svg" alt="Galavics Andrea" style="height:120px">
+            </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Galavics Andrea</h3>
             <p class="muted">Sopron, Ágfalva</p>
@@ -259,7 +232,9 @@
           </article>
 
           <article class="agent">
-            <div class="agent__media avatar">SB</div>
+            <div class="agent__media" style="height:140px;border-radius:12px;background:#f5f7ff;display:grid;place-items:center">
+              <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/agent-male2-3d.svg" alt="Szabó Béla" style="height:120px">
+            </div>
             <div class="agent__ribbon">Prémium Partner</div>
             <h3>Szabó Béla</h3>
             <p class="muted">XI., XII., XIII., XIV. kerület</p>
@@ -293,7 +268,10 @@
 
       <div class="news">
         <article class="news__featured">
-          <div class="news__img img--boxes">Piaci hírek</div>
+          <div class="news__img img--boxes"
+               style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/news-market-3d.svg');background-size:cover;background-position:center;">
+            Piaci hírek
+          </div>
           <h3>Szokatlan tempóban csökkentek az albérletárak szeptemberben</h3>
           <p>Országosan több mint 1%-kal alacsonyabbak a lakbérek az előző hónaphoz képest – hasonló csökkenésre 2020 óta nem volt példa.</p>
         </article>
@@ -309,11 +287,17 @@
 
         <aside class="news__side">
           <article class="side-card">
-            <div class="side-card__img img--portrait">Otthon start</div>
+            <div class="side-card__img img--portrait"
+                 style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/news-interview-3d.svg');background-size:cover;background-position:center;">
+              Otthon start
+            </div>
             <h4>„Az Otthon Start élénkíti a keresletet, de a kínálatnak is segítség kell.”</h4>
           </article>
           <article class="side-card">
-            <div class="side-card__img img--calc">Otthon start</div>
+            <div class="side-card__img img--calc"
+                 style="background-image:url('https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/news-calc-3d.svg');background-size:cover;background-position:center;">
+              Otthon start
+            </div>
             <h4>2026-tól lendületet kaphatnak az új építésű lakáseladások</h4>
           </article>
         </aside>
@@ -324,13 +308,25 @@
   <!-- App promó -->
   <section class="app-promo">
     <div class="container app-promo__inner">
-      <div class="phone-mock" aria-hidden="true"></div>
+      <!-- Telefon illusztráció + DEMO WEBSHOP -->
+      <div class="phone-mock" aria-hidden="true"
+           style="position:relative;display:flex;align-items:center;justify-content:center;background:#000;border-radius:24px;overflow:hidden;min-width:180px;min-height:340px;box-shadow:inset 0 0 0 8px #111;">
+        <div style="position:absolute;inset:10px;background:#fff;border-radius:18px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <img src="https://cdn.jsdelivr.net/gh/horvathtamasdev/realty-demo/assets/demo-appscreen.svg" alt="Demo Webshop app" style="width:120px;height:auto;">
+          <h4 style="margin:0;color:#1f2b6c">DEMO WEBSHOP</h4>
+          <button style="background:#ff6a3d;border:none;color:#fff;border-radius:999px;padding:8px 12px;cursor:pointer">Megnyitás</button>
+        </div>
+      </div>
       <div>
         <h3>Töltsd le a mobilappot!</h3>
         <p>Eladó vagy kiadó ingatlant keresel? Vidd magaddal a teljes kínálatot, bárhol, bármikor.</p>
         <div class="store-buttons">
-          <a class="store store--apple" href="#" role="button" aria-label="App Store">Letölthető az App Store-ból</a>
-          <a class="store store--google" href="#" role="button" aria-label="Google Play">Szerezd meg a Google Playen</a>
+          <a class="store store--apple" href="#" role="button" aria-label="App Store">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Available_on_the_App_Store_%28black%29_SVG.svg" alt="App Store">
+          </a>
+          <a class="store store--google" href="#" role="button" aria-label="Google Play">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play">
+          </a>
         </div>
       </div>
     </div>
@@ -441,8 +437,9 @@
   </footer>
 
   <!-- Modálok -->
+  <!-- 🔐 Modern üveges bejelentkezés/regisztráció -->
   <div class="modal" id="authModal" aria-hidden="true" role="dialog" aria-labelledby="authTitle">
-    <div class="modal__dialog">
+    <div class="modal__dialog glass">
       <button class="modal__close" data-close>×</button>
       <h3 id="authTitle">Bejelentkezés / Regisztráció</h3>
       <div class="tabs small" role="tablist">
@@ -451,14 +448,15 @@
       </div>
       <div class="tabpanes">
         <form class="stack is-active" id="pane-login">
-          <input placeholder="Email" type="email" required>
-          <input placeholder="Jelszó" type="password" required>
+          <div class="field icon"><span>📧</span><input placeholder="Email" type="email" required></div>
+          <div class="field icon"><span>🔒</span><input placeholder="Jelszó" type="password" required></div>
+          <a href="#" class="forgot">Elfelejtett jelszó?</a>
           <button class="btn btn--primary" type="submit">Belépés</button>
         </form>
         <form class="stack" id="pane-signup">
-          <input placeholder="Email" type="email" required>
-          <input placeholder="Jelszó" type="password" required>
-          <input placeholder="Teljes név" required>
+          <div class="field icon"><span>📧</span><input placeholder="Email" type="email" required></div>
+          <div class="field icon"><span>🔒</span><input placeholder="Jelszó" type="password" required></div>
+          <div class="field icon"><span>🙍‍♂️</span><input placeholder="Teljes név" required></div>
           <button class="btn btn--primary" type="submit">Regisztráció</button>
         </form>
       </div>
@@ -469,7 +467,7 @@
     <div class="modal__dialog">
       <button class="modal__close" data-close>×</button>
       <h3 id="postTitle">Hirdetés feladása</h3>
-      <form class="stack">
+      <form class="stack" id="quickPostForm">
         <select>
           <option>Eladó</option><option>Kiadó</option>
         </select>
@@ -525,6 +523,14 @@
         <input placeholder="Alapterület (m²)" inputmode="numeric">
         <button class="btn btn--primary" type="submit">Becsült érték kérése</button>
       </form>
+    </div>
+  </div>
+
+  <!-- ✅ Siker modál hirdetés után -->
+  <div class="modal" id="successModal" aria-hidden="true">
+    <div class="modal__dialog glass center">
+      <h3>✅ Hirdetés sikeresen mentve!</h3>
+      <p>Köszönjük, a hirdetésed bekerült a rendszerbe (demo).</p>
     </div>
   </div>
 
